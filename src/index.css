@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #234B36;
+    --secondary: #536B45;
+    --accent: #C39A58;
+    --background: #FAF8F2;
+    --surface: #FFFFFF;
+    --text-primary: #26332A;
+    --text-secondary: #74796F;
+    --border: #E5E4DC;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
