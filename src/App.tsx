@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { MobileStickyBar } from "./components/layout/MobileStickyBar";
@@ -15,12 +15,17 @@ import { Contact } from "./pages/Contact";
 import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 import { AdminLogin } from "./admin/AdminLogin";
 import { AdminDashboard } from "./admin/AdminDashboard";
+import { ScrollReveal } from "./components/common/ScrollReveal";
 
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const location = useLocation();
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F2] text-[#26332A] pb-16 lg:pb-0">
       <Navbar />
-      <div className="flex-1">{children}</div>
+      <main id="main-content" className="flex-1">
+        <ScrollReveal key={location.pathname}>{children}</ScrollReveal>
+      </main>
       <Footer />
       <MobileStickyBar />
     </div>

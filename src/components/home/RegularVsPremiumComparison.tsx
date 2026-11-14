@@ -100,7 +100,7 @@ export const RegularVsPremiumComparison: React.FC<CategoryComparisonProps> = ({
       {/* Two Cards Side by Side (Desktop) / Stacked Vertically (Mobile) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto px-4">
         {/* CARD 1: REGULAR ROOMS (Arabica) */}
-        <div className="bg-white rounded-3xl border-2 border-[#E5E4DC] hover:border-[#234B36] transition-all overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-lg">
+        <div data-scroll-reveal="card" className="bg-white rounded-3xl border-2 border-[#E5E4DC] hover:border-[#234B36] transition-all overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-lg">
           <div>
             {/* Image Header with Badge */}
             <div className="h-56 sm:h-64 relative overflow-hidden bg-gray-100">
@@ -192,7 +192,7 @@ export const RegularVsPremiumComparison: React.FC<CategoryComparisonProps> = ({
         </div>
 
         {/* CARD 2: PREMIUM ROOMS (Robusta) */}
-        <div className="bg-white rounded-3xl border-2 border-[#C39A58] hover:border-[#234B36] transition-all overflow-hidden flex flex-col justify-between shadow-md hover:shadow-xl relative">
+        <div data-scroll-reveal="card" className="bg-white rounded-3xl border-2 border-[#C39A58] hover:border-[#234B36] transition-all overflow-hidden flex flex-col justify-between shadow-md hover:shadow-xl relative">
           {/* Most Popular / Premium Ribbon */}
           <div className="bg-[#C39A58] text-[#234B36] text-[10px] font-extrabold uppercase tracking-widest text-center py-1.5 px-4">
             Enhanced Living Space • Robusta Variety
@@ -291,7 +291,7 @@ export const RegularVsPremiumComparison: React.FC<CategoryComparisonProps> = ({
 
       {/* Comparison Table Below Cards */}
       <div className="max-w-5xl mx-auto px-4">
-        <div className="bg-white rounded-2xl border border-[#E5E4DC] p-5 sm:p-7 shadow-xs space-y-4">
+        <div data-scroll-reveal="card" className="bg-white rounded-2xl border border-[#E5E4DC] p-5 sm:p-7 shadow-xs space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-[#E5E4DC] pb-3">
             <div>
               <span className="text-[10px] uppercase tracking-widest font-bold text-[#C39A58]">
