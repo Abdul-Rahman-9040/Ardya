@@ -27,6 +27,7 @@ import {
   Flame,
   Heart,
   Calendar,
+  ChevronDown,
 } from "lucide-react";
 import { RoomCategory } from "../data/pricingConfig";
 
@@ -42,42 +43,56 @@ export const Home: React.FC = () => {
       />
 
       {/* SECTION 1: LUXURY HERO */}
-      <section className="relative min-h-[75vh] flex items-center justify-center bg-[#234B36] text-white overflow-hidden w-full">
-        <div className="absolute inset-0 bg-[radial-gradient(#536B45_1px,transparent_1px)] [background-size:24px_24px] opacity-25 z-10 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#234B36] via-[#234B36]/70 to-black/50 z-10" />
+      <section className="home-hero relative flex items-center justify-center bg-[#17281F] text-white overflow-hidden w-full">
+        <img
+          src="/images/ardya-hero-poster.jpg"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
+          className="home-hero__poster"
+        />
+        <video
+          className="home-hero__video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/images/ardya-hero-poster.jpg"
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <source src="/videos/ardya-drone.mp4" type="video/mp4" />
+        </video>
+        <div className="home-hero__overlay" />
 
-        {/* Hero Background Image */}
-        <div className="absolute inset-0 z-0">
-          <SafeImage
-            src="/images/exterior/main-exterior.jpg"
-            alt="Ardya Homestays coffee estate aerial Balehalli"
-            fallbackTitle="Ardya Homestays Main Exterior"
-            categoryName="Balehalli, Karnataka"
-            className="w-full h-full object-cover scale-105"
-          />
-        </div>
-
-        {/* Content Box */}
-        <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 text-center py-16 sm:py-20">
-          <div className="flex items-center justify-center space-x-2 mb-5">
+        <div className="home-hero__content relative z-20 mx-auto text-center">
+          <div className="home-hero__weather flex items-center justify-center mb-5 sm:mb-7">
             <WeatherPill />
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.12] text-[#FAF8F2] mb-4">
-            Discover Serenity at <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FAF8F2] via-[#C39A58] to-[#FAF8F2]">
+          <p className="home-hero__eyebrow">
+            A private coffee-estate retreat
+          </p>
+
+          <h1 className="home-hero__title font-serif font-extrabold text-[#FAF8F2]">
+            Discover Serenity at{" "}
+            <span className="home-hero__title-accent">
               Ardya Homestays
             </span>
           </h1>
 
-          <p className="text-xs sm:text-sm md:text-base text-[#E5E4DC]/90 max-w-xl mx-auto leading-relaxed mb-8">
-            An intimate coffee plantation sanctuary in Balehalli, Karnataka. 4 serene rooms across Regular &amp; Premium categories with warm campfire nights and authentic Malnad hospitality.
+          <p className="home-hero__description">
+            An intimate coffee-estate sanctuary in Balehalli, Karnataka, with
+            four serene rooms, warm campfire evenings, and authentic Malnad
+            hospitality.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="home-hero__actions">
             <a
               href="#instant-enquiry"
-              className="px-6 py-3.5 bg-[#C39A58] hover:bg-[#b08745] text-[#234B36] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg hover:-translate-y-0.5 flex items-center space-x-2 min-h-[44px]"
+              className="home-hero__button home-hero__button--primary"
             >
               <Calendar className="w-4 h-4" />
               <span>Book Your Stay</span>
@@ -87,7 +102,7 @@ export const Home: React.FC = () => {
               href={`https://wa.me/${businessConfig.phone}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3.5 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-lg hover:-translate-y-0.5 flex items-center space-x-2 min-h-[44px]"
+              className="home-hero__button home-hero__button--whatsapp"
             >
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp Host</span>
@@ -95,17 +110,22 @@ export const Home: React.FC = () => {
 
             <a
               href={`tel:${businessConfig.phone}`}
-              className="px-5 py-3.5 border border-white/40 hover:bg-white/10 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all flex items-center space-x-2 min-h-[44px]"
+              className="home-hero__button home-hero__button--outline"
             >
               <Phone className="w-4 h-4" />
               <span>{businessConfig.displayPhone}</span>
             </a>
           </div>
+
+          <a className="home-hero__scroll-cue" href="#experiences">
+            <span>Explore Ardya</span>
+            <ChevronDown className="w-4 h-4" aria-hidden="true" />
+          </a>
         </div>
       </section>
 
       {/* SECTION 2: EXPERIENCE RIBBON */}
-      <section className="py-4 bg-white border-b border-[#E5E4DC]">
+      <section id="experiences" className="py-4 bg-white border-b border-[#E5E4DC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
             <div className="flex items-center space-x-2 p-1">
