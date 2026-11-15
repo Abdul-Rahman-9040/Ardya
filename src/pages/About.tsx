@@ -4,6 +4,7 @@ import { SEO } from "../components/seo/SEO";
 import { SafeImage } from "../components/common/SafeImage";
 import { MapPin, Phone, MessageCircle, Trees, ShieldCheck, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
+import { propertyPhotos } from "../data/propertyPhotos";
 
 export const About: React.FC = () => {
   return (
@@ -54,7 +55,7 @@ export const About: React.FC = () => {
             <div className="space-y-4">
               <div className="rounded-2xl overflow-hidden border border-[#E5E4DC] shadow-md">
                 <SafeImage
-                  src="/images/exterior/surroundings.jpg"
+                  src={propertyPhotos.featuredExterior}
                   alt="Ardya Homestays surroundings Balehalli"
                   fallbackTitle="Estate Surroundings"
                   categoryName="Nature & Foliage"

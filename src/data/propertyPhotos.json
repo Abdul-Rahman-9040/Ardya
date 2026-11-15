@@ -1,0 +1,1093 @@
+{
+  "rooms": {
+    "arabica-1": {
+      "cover": "/images/property/arabica-1/dsc04866.webp",
+      "gallery": [
+        "/images/property/arabica-1/dsc04866.webp",
+        "/images/property/arabica-1/dsc04867.webp",
+        "/images/property/arabica-1/dsc04868.webp",
+        "/images/property/arabica-1/dsc04869.webp",
+        "/images/property/arabica-1/dsc04870.webp",
+        "/images/property/arabica-1/dsc04871.webp",
+        "/images/property/arabica-1/dsc04872.webp",
+        "/images/property/arabica-1/dsc04873.webp",
+        "/images/property/arabica-1/dsc04874.webp",
+        "/images/property/arabica-1/dsc04875.webp",
+        "/images/property/arabica-1/dsc04876.webp",
+        "/images/property/arabica-1/dsc04877.webp",
+        "/images/property/arabica-1/dsc04878.webp"
+      ]
+    },
+    "arabica-2": {
+      "cover": "/images/property/arabica-2/dsc04895.webp",
+      "gallery": [
+        "/images/property/arabica-2/dsc04895.webp",
+        "/images/property/arabica-2/dsc04896.webp",
+        "/images/property/arabica-2/dsc04897.webp",
+        "/images/property/arabica-2/dsc04898.webp",
+        "/images/property/arabica-2/dsc04899.webp",
+        "/images/property/arabica-2/dsc04901.webp",
+        "/images/property/arabica-2/dsc04902.webp",
+        "/images/property/arabica-2/dsc04903.webp",
+        "/images/property/arabica-2/dsc04904.webp",
+        "/images/property/arabica-2/dsc04906.webp",
+        "/images/property/arabica-2/dsc04907.webp",
+        "/images/property/arabica-2/dsc04909.webp",
+        "/images/property/arabica-2/dsc04911.webp",
+        "/images/property/arabica-2/dsc04912.webp",
+        "/images/property/arabica-2/dsc04915.webp",
+        "/images/property/arabica-2/dsc04917.webp",
+        "/images/property/arabica-2/dsc04918.webp"
+      ]
+    },
+    "robusta-premium-1": {
+      "cover": "/images/property/robusta-premium-1/dsc04935.webp",
+      "gallery": [
+        "/images/property/robusta-premium-1/dsc04935.webp",
+        "/images/property/robusta-premium-1/dsc04936.webp",
+        "/images/property/robusta-premium-1/dsc04937.webp",
+        "/images/property/robusta-premium-1/dsc04938.webp",
+        "/images/property/robusta-premium-1/dsc04941.webp",
+        "/images/property/robusta-premium-1/dsc04943.webp",
+        "/images/property/robusta-premium-1/dsc04944.webp",
+        "/images/property/robusta-premium-1/dsc04945.webp",
+        "/images/property/robusta-premium-1/dsc04946.webp",
+        "/images/property/robusta-premium-1/dsc04948.webp",
+        "/images/property/robusta-premium-1/dsc04949.webp",
+        "/images/property/robusta-premium-1/dsc04951.webp",
+        "/images/property/robusta-premium-1/dsc04952.webp",
+        "/images/property/robusta-premium-1/dsc04953.webp",
+        "/images/property/robusta-premium-1/dsc04954.webp",
+        "/images/property/robusta-premium-1/dsc04957.webp",
+        "/images/property/robusta-premium-1/dsc04958.webp"
+      ]
+    },
+    "robusta-premium-2": {
+      "cover": "/images/property/robusta-premium-2/dsc04969.webp",
+      "gallery": [
+        "/images/property/robusta-premium-2/dsc04969.webp",
+        "/images/property/robusta-premium-2/dsc04971.webp",
+        "/images/property/robusta-premium-2/dsc04972.webp",
+        "/images/property/robusta-premium-2/dsc04973.webp",
+        "/images/property/robusta-premium-2/dsc04975.webp",
+        "/images/property/robusta-premium-2/dsc04976.webp",
+        "/images/property/robusta-premium-2/dsc04979.webp",
+        "/images/property/robusta-premium-2/dsc04981.webp",
+        "/images/property/robusta-premium-2/dsc04983.webp",
+        "/images/property/robusta-premium-2/dsc04986.webp",
+        "/images/property/robusta-premium-2/dsc04989.webp"
+      ]
+    }
+  },
+  "featuredExterior": "/images/property/surroundings/dsc05025.webp",
+  "gallery": [
+    {
+      "category": "exterior",
+      "title": "Arabica 1 - DJI 0876",
+      "roomAssociation": null,
+      "imagePath": "/images/property/arabica-1/dji_0876.webp",
+      "altText": "Arabica 1 - DJI 0876 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04866",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04866.webp",
+      "altText": "Arabica 1 - DSC04866 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04867",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04867.webp",
+      "altText": "Arabica 1 - DSC04867 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04868",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04868.webp",
+      "altText": "Arabica 1 - DSC04868 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04869",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04869.webp",
+      "altText": "Arabica 1 - DSC04869 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04870",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04870.webp",
+      "altText": "Arabica 1 - DSC04870 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04871",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04871.webp",
+      "altText": "Arabica 1 - DSC04871 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04872",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04872.webp",
+      "altText": "Arabica 1 - DSC04872 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04873",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04873.webp",
+      "altText": "Arabica 1 - DSC04873 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04874",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04874.webp",
+      "altText": "Arabica 1 - DSC04874 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04875",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04875.webp",
+      "altText": "Arabica 1 - DSC04875 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04876",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04876.webp",
+      "altText": "Arabica 1 - DSC04876 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04877",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04877.webp",
+      "altText": "Arabica 1 - DSC04877 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 1 - DSC04878",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04878.webp",
+      "altText": "Arabica 1 - DSC04878 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Arabica 1 Bathroom - DSC04879",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04879.webp",
+      "altText": "Arabica 1 Bathroom - DSC04879 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Arabica 1 Bathroom - DSC04880",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04880.webp",
+      "altText": "Arabica 1 Bathroom - DSC04880 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Arabica 1 Bathroom - DSC04881",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04881.webp",
+      "altText": "Arabica 1 Bathroom - DSC04881 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Arabica 1 Bathroom - DSC04882",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04882.webp",
+      "altText": "Arabica 1 Bathroom - DSC04882 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Arabica 1 Bathroom - DSC04883",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04883.webp",
+      "altText": "Arabica 1 Bathroom - DSC04883 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Arabica 1 Bathroom - DSC04884",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04884.webp",
+      "altText": "Arabica 1 Bathroom - DSC04884 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Arabica 1 Bathroom - DSC04885",
+      "roomAssociation": "Arabica 1",
+      "imagePath": "/images/property/arabica-1/dsc04885.webp",
+      "altText": "Arabica 1 Bathroom - DSC04885 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Arabica 1 at Ardya Homestays."
+    },
+    {
+      "category": "outdoor",
+      "title": "Arabica 1 Outdoor View - DSC05034",
+      "roomAssociation": null,
+      "imagePath": "/images/property/arabica-1/dsc05034.webp",
+      "altText": "Arabica 1 Outdoor View - DSC05034 at Ardya Homestays in Balehalli",
+      "caption": "Outdoor view at Ardya Homestays in Balehalli."
+    },
+    {
+      "category": "washrooms",
+      "title": "Arabica 2 Bathroom - DSC04887",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04887.webp",
+      "altText": "Arabica 2 Bathroom - DSC04887 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Arabica 2 Bathroom - DSC04889",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04889.webp",
+      "altText": "Arabica 2 Bathroom - DSC04889 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Arabica 2 Bathroom - DSC04892",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04892.webp",
+      "altText": "Arabica 2 Bathroom - DSC04892 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04895",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04895.webp",
+      "altText": "Arabica 2 - DSC04895 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04896",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04896.webp",
+      "altText": "Arabica 2 - DSC04896 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04897",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04897.webp",
+      "altText": "Arabica 2 - DSC04897 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04898",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04898.webp",
+      "altText": "Arabica 2 - DSC04898 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04899",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04899.webp",
+      "altText": "Arabica 2 - DSC04899 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04901",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04901.webp",
+      "altText": "Arabica 2 - DSC04901 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04902",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04902.webp",
+      "altText": "Arabica 2 - DSC04902 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04903",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04903.webp",
+      "altText": "Arabica 2 - DSC04903 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04904",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04904.webp",
+      "altText": "Arabica 2 - DSC04904 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04906",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04906.webp",
+      "altText": "Arabica 2 - DSC04906 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04907",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04907.webp",
+      "altText": "Arabica 2 - DSC04907 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04909",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04909.webp",
+      "altText": "Arabica 2 - DSC04909 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04911",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04911.webp",
+      "altText": "Arabica 2 - DSC04911 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04912",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04912.webp",
+      "altText": "Arabica 2 - DSC04912 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04915",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04915.webp",
+      "altText": "Arabica 2 - DSC04915 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04917",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04917.webp",
+      "altText": "Arabica 2 - DSC04917 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "arabica",
+      "title": "Arabica 2 - DSC04918",
+      "roomAssociation": "Arabica 2",
+      "imagePath": "/images/property/arabica-2/dsc04918.webp",
+      "altText": "Arabica 2 - DSC04918 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Arabica 2 at Ardya Homestays."
+    },
+    {
+      "category": "outdoor",
+      "title": "Arabica 2 Outdoor View - DSC05035",
+      "roomAssociation": null,
+      "imagePath": "/images/property/arabica-2/dsc05035.webp",
+      "altText": "Arabica 2 Outdoor View - DSC05035 at Ardya Homestays in Balehalli",
+      "caption": "Outdoor view at Ardya Homestays in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Robusta Premium 1 - DJI 0863",
+      "roomAssociation": null,
+      "imagePath": "/images/property/robusta-premium-1/dji_0863.webp",
+      "altText": "Robusta Premium 1 - DJI 0863 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 1 Bathroom - DSC04920",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04920.webp",
+      "altText": "Robusta Premium 1 Bathroom - DSC04920 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 1 Bathroom - DSC04921",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04921.webp",
+      "altText": "Robusta Premium 1 Bathroom - DSC04921 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 1 Bathroom - DSC04922",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04922.webp",
+      "altText": "Robusta Premium 1 Bathroom - DSC04922 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 1 Bathroom - DSC04923",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04923.webp",
+      "altText": "Robusta Premium 1 Bathroom - DSC04923 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 1 Bathroom - DSC04926",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04926.webp",
+      "altText": "Robusta Premium 1 Bathroom - DSC04926 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 1 Bathroom - DSC04927",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04927.webp",
+      "altText": "Robusta Premium 1 Bathroom - DSC04927 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 1 Bathroom - DSC04930",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04930.webp",
+      "altText": "Robusta Premium 1 Bathroom - DSC04930 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 1 Bathroom - DSC04931",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04931.webp",
+      "altText": "Robusta Premium 1 Bathroom - DSC04931 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 1 Bathroom - DSC04933",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04933.webp",
+      "altText": "Robusta Premium 1 Bathroom - DSC04933 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 1 Bathroom - DSC04934",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04934.webp",
+      "altText": "Robusta Premium 1 Bathroom - DSC04934 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04935",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04935.webp",
+      "altText": "Robusta Premium 1 - DSC04935 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04936",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04936.webp",
+      "altText": "Robusta Premium 1 - DSC04936 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04937",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04937.webp",
+      "altText": "Robusta Premium 1 - DSC04937 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04938",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04938.webp",
+      "altText": "Robusta Premium 1 - DSC04938 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04941",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04941.webp",
+      "altText": "Robusta Premium 1 - DSC04941 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04943",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04943.webp",
+      "altText": "Robusta Premium 1 - DSC04943 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04944",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04944.webp",
+      "altText": "Robusta Premium 1 - DSC04944 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04945",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04945.webp",
+      "altText": "Robusta Premium 1 - DSC04945 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04946",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04946.webp",
+      "altText": "Robusta Premium 1 - DSC04946 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04948",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04948.webp",
+      "altText": "Robusta Premium 1 - DSC04948 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04949",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04949.webp",
+      "altText": "Robusta Premium 1 - DSC04949 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04951",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04951.webp",
+      "altText": "Robusta Premium 1 - DSC04951 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04952",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04952.webp",
+      "altText": "Robusta Premium 1 - DSC04952 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04953",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04953.webp",
+      "altText": "Robusta Premium 1 - DSC04953 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04954",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04954.webp",
+      "altText": "Robusta Premium 1 - DSC04954 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04957",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04957.webp",
+      "altText": "Robusta Premium 1 - DSC04957 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 1 - DSC04958",
+      "roomAssociation": "Robusta Premium 1",
+      "imagePath": "/images/property/robusta-premium-1/dsc04958.webp",
+      "altText": "Robusta Premium 1 - DSC04958 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 1 at Ardya Homestays."
+    },
+    {
+      "category": "outdoor",
+      "title": "Robusta Premium 1 Outdoor View - DSC05009",
+      "roomAssociation": null,
+      "imagePath": "/images/property/robusta-premium-1/dsc05009.webp",
+      "altText": "Robusta Premium 1 Outdoor View - DSC05009 at Ardya Homestays in Balehalli",
+      "caption": "Outdoor view at Ardya Homestays in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Robusta Premium 2 - DJI 0862",
+      "roomAssociation": null,
+      "imagePath": "/images/property/robusta-premium-2/dji_0862.webp",
+      "altText": "Robusta Premium 2 - DJI 0862 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 2 Bathroom - DSC04959",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04959.webp",
+      "altText": "Robusta Premium 2 Bathroom - DSC04959 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 2 Bathroom - DSC04960",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04960.webp",
+      "altText": "Robusta Premium 2 Bathroom - DSC04960 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 2 Bathroom - DSC04961",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04961.webp",
+      "altText": "Robusta Premium 2 Bathroom - DSC04961 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 2 Bathroom - DSC04962",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04962.webp",
+      "altText": "Robusta Premium 2 Bathroom - DSC04962 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 2 Bathroom - DSC04963",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04963.webp",
+      "altText": "Robusta Premium 2 Bathroom - DSC04963 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 2 Bathroom - DSC04964",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04964.webp",
+      "altText": "Robusta Premium 2 Bathroom - DSC04964 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 2 Bathroom - DSC04965",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04965.webp",
+      "altText": "Robusta Premium 2 Bathroom - DSC04965 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 2 Bathroom - DSC04967",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04967.webp",
+      "altText": "Robusta Premium 2 Bathroom - DSC04967 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "washrooms",
+      "title": "Robusta Premium 2 Bathroom - DSC04968",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04968.webp",
+      "altText": "Robusta Premium 2 Bathroom - DSC04968 at Ardya Homestays in Balehalli",
+      "caption": "Attached washroom photograph for Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04969",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04969.webp",
+      "altText": "Robusta Premium 2 - DSC04969 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04971",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04971.webp",
+      "altText": "Robusta Premium 2 - DSC04971 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04972",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04972.webp",
+      "altText": "Robusta Premium 2 - DSC04972 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04973",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04973.webp",
+      "altText": "Robusta Premium 2 - DSC04973 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04975",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04975.webp",
+      "altText": "Robusta Premium 2 - DSC04975 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04976",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04976.webp",
+      "altText": "Robusta Premium 2 - DSC04976 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04979",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04979.webp",
+      "altText": "Robusta Premium 2 - DSC04979 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04981",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04981.webp",
+      "altText": "Robusta Premium 2 - DSC04981 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04983",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04983.webp",
+      "altText": "Robusta Premium 2 - DSC04983 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04986",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04986.webp",
+      "altText": "Robusta Premium 2 - DSC04986 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "robusta-premium",
+      "title": "Robusta Premium 2 - DSC04989",
+      "roomAssociation": "Robusta Premium 2",
+      "imagePath": "/images/property/robusta-premium-2/dsc04989.webp",
+      "altText": "Robusta Premium 2 - DSC04989 at Ardya Homestays in Balehalli",
+      "caption": "Original photograph of Robusta Premium 2 at Ardya Homestays."
+    },
+    {
+      "category": "outdoor",
+      "title": "Robusta Premium 2 Outdoor View - DSC05001",
+      "roomAssociation": null,
+      "imagePath": "/images/property/robusta-premium-2/dsc05001.webp",
+      "altText": "Robusta Premium 2 Outdoor View - DSC05001 at Ardya Homestays in Balehalli",
+      "caption": "Outdoor view at Ardya Homestays in Balehalli."
+    },
+    {
+      "category": "outdoor",
+      "title": "Robusta Premium 2 Outdoor View - DSC05011",
+      "roomAssociation": null,
+      "imagePath": "/images/property/robusta-premium-2/dsc05011.webp",
+      "altText": "Robusta Premium 2 Outdoor View - DSC05011 at Ardya Homestays in Balehalli",
+      "caption": "Outdoor view at Ardya Homestays in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DJI 0864",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dji_0864.webp",
+      "altText": "Homestay Surroundings - DJI 0864 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DJI 0875",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dji_0875.webp",
+      "altText": "Homestay Surroundings - DJI 0875 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DJI 0887",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dji_0887.webp",
+      "altText": "Homestay Surroundings - DJI 0887 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DJI 0888",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dji_0888.webp",
+      "altText": "Homestay Surroundings - DJI 0888 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DJI 0889",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dji_0889.webp",
+      "altText": "Homestay Surroundings - DJI 0889 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DJI 0890",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dji_0890.webp",
+      "altText": "Homestay Surroundings - DJI 0890 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DJI 0891",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dji_0891.webp",
+      "altText": "Homestay Surroundings - DJI 0891 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DJI 0892",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dji_0892.webp",
+      "altText": "Homestay Surroundings - DJI 0892 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DJI 0893",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dji_0893.webp",
+      "altText": "Homestay Surroundings - DJI 0893 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DJI 0894",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dji_0894.webp",
+      "altText": "Homestay Surroundings - DJI 0894 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC04992",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc04992.webp",
+      "altText": "Homestay Surroundings - DSC04992 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05002",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05002.webp",
+      "altText": "Homestay Surroundings - DSC05002 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05003",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05003.webp",
+      "altText": "Homestay Surroundings - DSC05003 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05005",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05005.webp",
+      "altText": "Homestay Surroundings - DSC05005 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05013",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05013.webp",
+      "altText": "Homestay Surroundings - DSC05013 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05014",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05014.webp",
+      "altText": "Homestay Surroundings - DSC05014 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05015",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05015.webp",
+      "altText": "Homestay Surroundings - DSC05015 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05016",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05016.webp",
+      "altText": "Homestay Surroundings - DSC05016 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05017",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05017.webp",
+      "altText": "Homestay Surroundings - DSC05017 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05018",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05018.webp",
+      "altText": "Homestay Surroundings - DSC05018 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05021",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05021.webp",
+      "altText": "Homestay Surroundings - DSC05021 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05023",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05023.webp",
+      "altText": "Homestay Surroundings - DSC05023 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05024",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05024.webp",
+      "altText": "Homestay Surroundings - DSC05024 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05025",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05025.webp",
+      "altText": "Homestay Surroundings - DSC05025 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05027",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05027.webp",
+      "altText": "Homestay Surroundings - DSC05027 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05028",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05028.webp",
+      "altText": "Homestay Surroundings - DSC05028 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05029",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05029.webp",
+      "altText": "Homestay Surroundings - DSC05029 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05030",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05030.webp",
+      "altText": "Homestay Surroundings - DSC05030 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05031",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05031.webp",
+      "altText": "Homestay Surroundings - DSC05031 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05032",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05032.webp",
+      "altText": "Homestay Surroundings - DSC05032 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    },
+    {
+      "category": "exterior",
+      "title": "Homestay Surroundings - DSC05033",
+      "roomAssociation": null,
+      "imagePath": "/images/property/surroundings/dsc05033.webp",
+      "altText": "Homestay Surroundings - DSC05033 at Ardya Homestays in Balehalli",
+      "caption": "Ardya Homestays and its coffee-estate surroundings in Balehalli."
+    }
+  ]
+}

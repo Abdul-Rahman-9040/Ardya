@@ -16,7 +16,7 @@ export interface SEOConfig {
 export const seoConfig: SEOConfig = {
   siteName: "Ardya Homestays",
   siteUrl: "https://ardyahomestays.com",
-  defaultOgImage: "/images/exterior/main-exterior.jpg",
+  defaultOgImage: "/images/property/surroundings/dsc05025.webp",
   pages: {
     home: {
       title: "Ardya Homestays | Homestay in Balehalli, Karnataka",

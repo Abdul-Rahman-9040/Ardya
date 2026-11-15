@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { SafeImage } from "../common/SafeImage";
 import { getActivePricingConfig, RoomCategory } from "../../data/pricingConfig";
 import { defaultRooms } from "../../data/rooms";
+import { propertyPhotos } from "../../data/propertyPhotos";
 import { formatCurrency } from "../../utils/cn";
 import {
   Check,
@@ -105,7 +106,7 @@ export const RegularVsPremiumComparison: React.FC<CategoryComparisonProps> = ({
             {/* Image Header with Badge */}
             <div className="h-56 sm:h-64 relative overflow-hidden bg-gray-100">
               <SafeImage
-                src={regularRooms[0]?.coverImage || "/images/arabica/arabica-1/cover.jpg"}
+                src={regularRooms[0]?.coverImage || propertyPhotos.rooms["arabica-1"].cover}
                 alt="Ardya Homestays Regular Room - Arabica"
                 fallbackTitle="Arabica Regular Room"
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
@@ -202,7 +203,7 @@ export const RegularVsPremiumComparison: React.FC<CategoryComparisonProps> = ({
             {/* Image Header with Badge */}
             <div className="h-56 sm:h-64 relative overflow-hidden bg-gray-100">
               <SafeImage
-                src={premiumRooms[0]?.coverImage || "/images/robusta-premium/robusta-premium-1/cover.jpg"}
+                src={premiumRooms[0]?.coverImage || propertyPhotos.rooms["robusta-premium-1"].cover}
                 alt="Ardya Homestays Premium Room - Robusta"
                 fallbackTitle="Robusta Premium Room"
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
