@@ -43,12 +43,12 @@ export const DayInTheLifeTimeline: React.FC = () => {
       badge: "Nature Immersion",
     },
     {
-      time: "05:00 PM",
-      period: "Sunset",
-      title: "Golden Hour Sunset Over Hills",
-      description: "Watch the mist sweep across the coffee canopy as dusk falls. Relax with freshly brewed evening tea and light regional snacks.",
+      time: undefined,
+      period: "Evening",
+      title: "A Quiet Golden Hour",
+      description: "As the light softens over the coffee canopy, unwind with freshly brewed tea and light regional snacks.",
       icon: Sun,
-      badge: "Misty Sunset",
+      badge: "Flexible Evening",
     },
     {
       time: "07:30 PM",
@@ -94,7 +94,7 @@ export const DayInTheLifeTimeline: React.FC = () => {
             >
               <div className="flex items-center justify-between mb-1.5">
                 <span className={`text-[10px] font-bold uppercase tracking-wider ${isSelected ? "text-[#C39A58]" : "text-[#74796F]"}`}>
-                  {item.time}
+                  {item.time || item.period}
                 </span>
                 <Icon className={`w-3.5 h-3.5 ${isSelected ? "text-[#C39A58]" : "text-[#234B36]"}`} />
               </div>
@@ -111,7 +111,11 @@ export const DayInTheLifeTimeline: React.FC = () => {
             <span className="px-2.5 py-0.5 rounded-full bg-[#C39A58] text-[#234B36] text-[10px] font-bold uppercase tracking-wider">
               {itinerary[activeStep].badge}
             </span>
-            <span className="text-xs text-[#74796F] font-semibold">{itinerary[activeStep].time}</span>
+            {itinerary[activeStep].time && (
+              <span className="text-xs text-[#74796F] font-semibold">
+                {itinerary[activeStep].time}
+              </span>
+            )}
           </div>
           <h4 className="font-serif text-xl font-bold text-[#26332A]">
             {itinerary[activeStep].title}

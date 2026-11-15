@@ -2,6 +2,7 @@ import React from "react";
 import { SEO } from "../components/seo/SEO";
 import { Link } from "react-router-dom";
 import { businessConfig } from "../data/businessConfig";
+import { FiveDayTravelItinerary } from "../components/home/FiveDayTravelItinerary";
 import { Compass, CloudSun, Shirt, Coffee, ArrowRight } from "lucide-react";
 
 export const TravelGuide: React.FC = () => {
@@ -25,6 +26,12 @@ export const TravelGuide: React.FC = () => {
           <p className="text-sm sm:text-base text-[#E5E4DC]/80 max-w-xl mx-auto">
             Everything you need to know to plan a rejuvenating holiday amidst the Western Ghats coffee plantations.
           </p>
+        </div>
+      </section>
+
+      <section className="border-b border-[#E5E4DC] bg-white py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <FiveDayTravelItinerary />
         </div>
       </section>
 

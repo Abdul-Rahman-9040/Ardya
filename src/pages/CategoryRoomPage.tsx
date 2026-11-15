@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { defaultRooms } from "../data/rooms";
 import { SEO } from "../components/seo/SEO";
-import { SafeImage } from "../components/common/SafeImage";
+import { RoomPhotoGallery } from "../components/rooms/RoomPhotoGallery";
 import { BedDouble, Users, Waves, Check, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 import { getActivePricingConfig, RoomCategory } from "../data/pricingConfig";
 
@@ -73,36 +73,12 @@ export const CategoryRoomPage: React.FC<CategoryPageProps> = ({ category }) => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 {/* Images */}
-                <div className="space-y-4">
-                  <div className="rounded-2xl overflow-hidden border border-[#E5E4DC] h-64 sm:h-80 bg-gray-100">
-                    <SafeImage
-                      src={room.coverImage}
-                      alt={room.name}
-                      fallbackTitle={room.name}
-                      categoryName={room.category}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* 8-Photo Detailed Gallery Grid */}
-                  <div className="space-y-2">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#74796F]">
-                      Room Photo Gallery ({room.galleryImages.length} HD Photos):
-                    </p>
-                    <div className="grid grid-cols-4 gap-2">
-                      {room.galleryImages.map((img, idx) => (
-                        <div key={idx} className="h-16 sm:h-20 rounded-xl overflow-hidden border border-[#E5E4DC] hover:border-[#234B36] transition-all group relative cursor-pointer">
-                          <SafeImage
-                            src={img}
-                            alt={`${room.name} detailed shot ${idx + 1}`}
-                            fallbackTitle={`${room.name} ${idx + 1}`}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                <RoomPhotoGallery
+                  roomName={room.name}
+                  coverImage={room.coverImage}
+                  roomImages={room.galleryImages}
+                  washroomImages={room.washroomImages}
+                />
 
                 {/* Information */}
                 <div className="flex flex-col justify-between h-full space-y-6">

@@ -19,9 +19,18 @@ export interface Room {
   bathroomDetails: string;
   coverImage: string;
   galleryImages: string[];
+  washroomImages: string[];
   active: boolean;
   displayOrder: number;
 }
+
+const getWashroomImages = (roomName: string) =>
+  propertyPhotos.gallery
+    .filter(
+      (photo) =>
+        photo.category === "washrooms" && photo.roomAssociation === roomName
+    )
+    .map((photo) => photo.imagePath);
 
 export const defaultRooms: Room[] = [
   // 1. REGULAR ROOMS (Coffee Variety: Arabica)
@@ -51,6 +60,7 @@ export const defaultRooms: Room[] = [
     bathroomDetails: "Private attached tiled washroom with hot & cold water shower and modern sanitaryware.",
     coverImage: propertyPhotos.rooms["arabica-1"].cover,
     galleryImages: propertyPhotos.rooms["arabica-1"].gallery,
+    washroomImages: getWashroomImages("Arabica 1"),
     active: true,
     displayOrder: 1,
   },
@@ -80,6 +90,7 @@ export const defaultRooms: Room[] = [
     bathroomDetails: "Private attached washroom equipped with hot water shower and modern fixtures.",
     coverImage: propertyPhotos.rooms["arabica-2"].cover,
     galleryImages: propertyPhotos.rooms["arabica-2"].gallery,
+    washroomImages: getWashroomImages("Arabica 2"),
     active: true,
     displayOrder: 2,
   },
@@ -111,6 +122,7 @@ export const defaultRooms: Room[] = [
     bathroomDetails: "Spacious attached modern bathroom with shower partition and hot water availability.",
     coverImage: propertyPhotos.rooms["robusta-premium-1"].cover,
     galleryImages: propertyPhotos.rooms["robusta-premium-1"].gallery,
+    washroomImages: getWashroomImages("Robusta Premium 1"),
     active: true,
     displayOrder: 3,
   },
@@ -140,6 +152,7 @@ export const defaultRooms: Room[] = [
     bathroomDetails: "En-suite washroom with clean tiles, hot water supply, and complete toiletries.",
     coverImage: propertyPhotos.rooms["robusta-premium-2"].cover,
     galleryImages: propertyPhotos.rooms["robusta-premium-2"].gallery,
+    washroomImages: getWashroomImages("Robusta Premium 2"),
     active: true,
     displayOrder: 4,
   },

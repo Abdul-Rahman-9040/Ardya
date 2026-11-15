@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { businessConfig } from "../../data/businessConfig";
-import { Phone, MessageCircle, MapPin, ExternalLink, Shield } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Shield, Sparkles } from "lucide-react";
 
 export const Footer: React.FC = () => {
   return (
@@ -68,6 +68,23 @@ export const Footer: React.FC = () => {
 
           <div className="flex items-center space-x-5">
             <span>© {new Date().getFullYear()} {businessConfig.name}</span>
+            <a
+              href="tel:+918217466139"
+              title="+91 8217466139"
+              aria-label="Developed by crea8ers. Phone: +91 8217466139"
+              className="group relative inline-flex items-center gap-1.5 text-[#E5E4DC]/75 transition-colors hover:text-white focus-visible:text-white"
+            >
+              <Sparkles className="h-3 w-3 text-[#C39A58]" />
+              <span>
+                Developed by{" "}
+                <span className="font-bold tracking-wide text-[#E4C58C]">
+                  crea8ers
+                </span>
+              </span>
+              <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/15 bg-[#17281F] px-3 py-2 text-[11px] font-semibold text-white opacity-0 shadow-xl transition duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+                +91 8217466139
+              </span>
+            </a>
             <Link to="/privacy-policy" className="hover:text-white transition-colors">
               Privacy
             </Link>

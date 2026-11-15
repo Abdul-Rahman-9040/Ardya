@@ -2,24 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { defaultRooms, Room } from "../data/rooms";
 import { SEO } from "../components/seo/SEO";
-import { SafeImage } from "../components/common/SafeImage";
+import { RoomPhotoGallery } from "../components/rooms/RoomPhotoGallery";
 import { BookingForm } from "../components/booking/BookingForm";
 import { getActivePricingConfig, RoomCategory } from "../data/pricingConfig";
-import {
-  BedDouble,
-  Users,
-  Waves,
-  Check,
-  Sparkles,
-  Phone,
-  MessageCircle,
-  Calendar,
-  ShieldCheck,
-  ChevronRight,
-  Maximize2,
-  X,
-} from "lucide-react";
-import { businessConfig } from "../data/businessConfig";
+import { BedDouble, Users, Waves, Check, Sparkles } from "lucide-react";
 
 export const UnifiedRoomsBookingPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -28,6 +14,11 @@ export const UnifiedRoomsBookingPage: React.FC = () => {
   // Selected room state (sync with query param ?room=)
   const roomParam = searchParams.get("room") || "arabica-1";
   const [selectedRoomId, setSelectedRoomId] = useState<string>(roomParam);
+  useEffect(() => {
+    if (defaultRooms.some((room) => room.id === roomParam)) {
+      setSelectedRoomId(roomParam);
+    }
+  }, [roomParam]);
 
   // Active Category filter
   const [categoryFilter, setCategoryFilter] = useState<"All" | RoomCategory>("All");
@@ -35,30 +26,10 @@ export const UnifiedRoomsBookingPage: React.FC = () => {
   // Selected active room object
   const activeRoom = defaultRooms.find((r) => r.id === selectedRoomId) || defaultRooms[0];
 
-  // Active preview image in main showcase
-  const [activePhoto, setActivePhoto] = useState<string>(activeRoom.coverImage);
-
-  // Lightbox modal state
-  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
-
-  // Keep active photo updated when room changes
-  useEffect(() => {
-    setActivePhoto(activeRoom.coverImage);
-  }, [activeRoom]);
-
   // Handle room selection and update URL cleanly without reload
   const handleSelectRoom = (room: Room) => {
     setSelectedRoomId(room.id);
-    setActivePhoto(room.coverImage);
     setSearchParams({ room: room.id, category: room.category }, { replace: true });
-
-    // Smooth scroll down to the interactive enquiry form on mobile
-    if (window.innerWidth < 1024) {
-      const el = document.getElementById("booking-action-section");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
   };
 
   const filteredRooms =
@@ -222,53 +193,13 @@ export const UnifiedRoomsBookingPage: React.FC = () => {
                 </p>
               </div>
 
-              {/* Main Active Photo with Zoom Lightbox Trigger */}
-              <div
-                className="h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-[#E5E4DC] bg-gray-100 relative group cursor-pointer shadow-inner"
-                onClick={() => setLightboxImg(activePhoto)}
-              >
-                <SafeImage
-                  src={activePhoto}
-                  alt={activeRoom.name}
-                  fallbackTitle={activeRoom.name}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <button
-                  type="button"
-                  className="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md text-white text-xs font-semibold flex items-center space-x-1.5 opacity-90 group-hover:opacity-100 transition-opacity"
-                >
-                  <Maximize2 className="w-3.5 h-3.5" />
-                  <span>Tap to Enlarge</span>
-                </button>
-              </div>
-
-              {/* Thumbnails of All 8 Detailed HD Photos for this Room */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#74796F]">
-                    Click any thumbnail to preview ({activeRoom.galleryImages.length} HD Photos):
-                  </p>
-                </div>
-                <div className="grid grid-cols-4 sm:grid-cols-4 gap-2">
-                  {activeRoom.galleryImages.map((img, idx) => {
-                    const isActive = activePhoto === img;
-                    return (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setActivePhoto(img)}
-                        className={`h-16 sm:h-20 rounded-xl overflow-hidden border transition-all ${
-                          isActive
-                            ? "border-[#234B36] ring-2 ring-[#234B36] shadow-sm"
-                            : "border-[#E5E4DC] hover:border-[#C39A58] opacity-80 hover:opacity-100"
-                        }`}
-                      >
-                        <img src={img} alt={`${activeRoom.name} view ${idx + 1}`} className="w-full h-full object-cover" />
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+              <RoomPhotoGallery
+                key={activeRoom.id}
+                roomName={activeRoom.name}
+                coverImage={activeRoom.coverImage}
+                roomImages={activeRoom.galleryImages}
+                washroomImages={activeRoom.washroomImages}
+              />
 
               {/* Verified Room Specs & Inclusions */}
               <div className="p-4 rounded-2xl bg-[#FAF8F2] border border-[#E5E4DC] space-y-3">
@@ -301,32 +232,13 @@ export const UnifiedRoomsBookingPage: React.FC = () => {
               <BookingForm
                 initialCategory={activeRoom.category}
                 initialRoomId={activeRoom.id}
+                onRoomChange={handleSelectRoom}
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* FULLSCREEN LIGHTBOX MODAL */}
-      {lightboxImg && (
-        <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setLightboxImg(null)}
-        >
-          <button
-            type="button"
-            onClick={() => setLightboxImg(null)}
-            className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/20 text-white hover:bg-white/30 flex items-center justify-center transition-colors"
-          >
-            <X className="w-6 h-6" />
-          </button>
-          <img
-            src={lightboxImg}
-            alt="Full size view"
-            className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl"
-          />
-        </div>
-      )}
     </div>
   );
 };

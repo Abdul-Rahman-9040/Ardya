@@ -29,12 +29,14 @@ interface BookingFormProps {
   initialCategory?: RoomCategory;
   initialRoomId?: string;
   initialPackageType?: PackageType;
+  onRoomChange?: (room: Room) => void;
 }
 
 export const BookingForm: React.FC<BookingFormProps> = ({
   initialCategory = "Regular",
   initialRoomId = "arabica-1",
   initialPackageType = "stay-with-meals",
+  onRoomChange,
 }) => {
   const [guestName, setGuestName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -53,6 +55,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<RoomCategory>(initialCategory);
   const [selectedRoomId, setSelectedRoomId] = useState<string>(initialRoomId);
   const [selectedPackageType, setSelectedPackageType] = useState<PackageType>(initialPackageType);
+
+  useEffect(() => {
+    setSelectedCategory(initialCategory);
+    setSelectedRoomId(initialRoomId);
+  }, [initialCategory, initialRoomId]);
 
   // Dynamic pricing state (auto-reloads on custom event)
   const [pricingConfig, setPricingConfig] = useState(getActivePricingConfig());
@@ -78,9 +85,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   useEffect(() => {
     const currentRoomBelongs = availableRoomsForCategory.some((r) => r.id === selectedRoomId);
     if (!currentRoomBelongs && availableRoomsForCategory.length > 0) {
-      setSelectedRoomId(availableRoomsForCategory[0].id);
+      const nextRoom = availableRoomsForCategory[0];
+      setSelectedRoomId(nextRoom.id);
+      onRoomChange?.(nextRoom);
     }
-  }, [selectedCategory, availableRoomsForCategory, selectedRoomId]);
+  }, [selectedCategory, availableRoomsForCategory, selectedRoomId, onRoomChange]);
 
   // Calculate nights
   const checkInDate = new Date(checkIn);
@@ -382,7 +391,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   <button
                     key={room.id}
                     type="button"
-                    onClick={() => setSelectedRoomId(room.id)}
+                    onClick={() => {
+                      setSelectedRoomId(room.id);
+                      onRoomChange?.(room);
+                    }}
                     className={`p-2.5 rounded-xl border text-left transition-all flex items-center space-x-2.5 ${
                       isSelected
                         ? "border-[#234B36] bg-[#234B36]/5 ring-2 ring-[#234B36] shadow-xs"

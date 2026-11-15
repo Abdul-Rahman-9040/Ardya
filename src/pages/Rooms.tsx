@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { defaultRooms } from "../data/rooms";
 import { SEO } from "../components/seo/SEO";
-import { SafeImage } from "../components/common/SafeImage";
+import { RoomPhotoGallery } from "../components/rooms/RoomPhotoGallery";
 import { RegularVsPremiumComparison } from "../components/home/RegularVsPremiumComparison";
 import { getActivePricingConfig, RoomCategory } from "../data/pricingConfig";
 import { BedDouble, Users, ArrowRight, Check, Sparkles, Filter } from "lucide-react";
@@ -104,20 +104,13 @@ export const Rooms: React.FC = () => {
                 className="bg-white rounded-3xl border border-[#E5E4DC] overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between"
               >
                 <div>
-                  <div className="h-64 sm:h-72 relative overflow-hidden bg-gray-100">
-                    <SafeImage
-                      src={room.coverImage}
-                      alt={room.name}
-                      fallbackTitle={room.name}
-                      categoryName={room.category}
-                      className="w-full h-full object-cover"
+                  <div className="p-4 pb-0 sm:p-5 sm:pb-0">
+                    <RoomPhotoGallery
+                      roomName={room.name}
+                      coverImage={room.coverImage}
+                      roomImages={room.galleryImages}
+                      washroomImages={room.washroomImages}
                     />
-                    <span className="absolute top-3 left-3 bg-[#234B36]/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
-                      {room.category} • {room.variety}
-                    </span>
-                    <span className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md text-[#234B36] text-xs font-extrabold px-3 py-1 rounded-xl shadow">
-                      from ₹{room.startingPrice.toLocaleString("en-IN")}/person
-                    </span>
                   </div>
 
                   <div className="p-6">
@@ -127,6 +120,12 @@ export const Rooms: React.FC = () => {
                     <p className="text-xs text-[#74796F] mt-1.5 line-clamp-2 leading-relaxed">
                       {room.shortDescription}
                     </p>
+                    <div className="mt-2 flex items-center justify-between gap-2 text-[10px] font-bold uppercase tracking-wide text-[#536B45]">
+                      <span>{room.category} • {room.variety}</span>
+                      <span className="text-[#234B36]">
+                        from ₹{room.startingPrice.toLocaleString("en-IN")}/person
+                      </span>
+                    </div>
 
                     <div className="mt-4 pt-3 border-t border-[#E5E4DC] flex items-center justify-between text-xs text-[#26332A]">
                       <span className="flex items-center space-x-1.5 text-[#536B45]">

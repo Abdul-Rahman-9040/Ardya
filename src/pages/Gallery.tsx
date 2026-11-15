@@ -126,6 +126,7 @@ export const Gallery: React.FC = () => {
 
       <section
         id="gallery-photos"
+        data-no-scroll-reveal
         className="scroll-mt-24 border-b border-[#E5E4DC] bg-[#FAF8F2]"
       >
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
@@ -188,48 +189,38 @@ export const Gallery: React.FC = () => {
 
           {filteredItems.length ? (
             <div className="grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
-              {filteredItems.map((item, index) => {
-                const portrait = index % 7 === 0;
-                const wide = index % 5 === 2;
-                const ratio = portrait
-                  ? "aspect-[4/5]"
-                  : wide
-                    ? "aspect-[5/3]"
-                    : "aspect-[4/3]";
-
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    data-scroll-reveal="card"
-                    onClick={() => setLightboxIndex(index)}
-                    aria-label={`View photo: ${item.title}`}
-                    style={{ transitionDelay: `${(index % 8) * 55}ms` }}
-                    className={`group relative block w-full overflow-hidden rounded-2xl bg-[#E5E4DC] text-left shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C39A58] sm:rounded-[1.35rem] ${ratio}`}
-                  >
-                    <SafeImage
-                      src={item.imagePath}
-                      alt={item.altText}
-                      fallbackTitle={item.title}
-                      categoryName={categoryLabels[item.category]}
-                      loading={index < 8 ? "eager" : "lazy"}
-                      className="absolute inset-0 h-full w-full transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-80 transition-opacity group-hover:opacity-100" />
-                    <span className="pointer-events-none absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-black/20 text-white opacity-0 backdrop-blur-sm transition group-hover:opacity-100 group-focus-visible:opacity-100">
-                      <ZoomIn className="h-4 w-4" />
-                    </span>
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 text-white sm:p-4">
-                      <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#E4C58C] sm:text-[10px]">
-                        {categoryLabels[item.category]}
-                      </p>
-                      <p className="mt-1 line-clamp-1 text-sm font-semibold sm:text-base">
-                        {getPhotoLabel(item)}
-                      </p>
-                    </div>
-                  </button>
-                );
-              })}
+              {filteredItems.map((item, index) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  data-scroll-reveal="card"
+                  onClick={() => setLightboxIndex(index)}
+                  aria-label={`View photo: ${item.title}`}
+                  style={{ transitionDelay: `${(index % 8) * 55}ms` }}
+                  className="group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl bg-[#E5E4DC] text-left shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C39A58] sm:rounded-[1.35rem]"
+                >
+                  <SafeImage
+                    src={item.imagePath}
+                    alt={item.altText}
+                    fallbackTitle={item.title}
+                    categoryName={categoryLabels[item.category]}
+                    loading={index < 8 ? "eager" : "lazy"}
+                    className="absolute inset-0 h-full w-full transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-80 transition-opacity group-hover:opacity-100" />
+                  <span className="pointer-events-none absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-black/20 text-white opacity-0 backdrop-blur-sm transition group-hover:opacity-100 group-focus-visible:opacity-100">
+                    <ZoomIn className="h-4 w-4" />
+                  </span>
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 text-white sm:p-4">
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#E4C58C] sm:text-[10px]">
+                      {categoryLabels[item.category]}
+                    </p>
+                    <p className="mt-1 line-clamp-1 text-sm font-semibold sm:text-base">
+                      {getPhotoLabel(item)}
+                    </p>
+                  </div>
+                </button>
+              ))}
             </div>
           ) : (
             <div className="rounded-3xl border border-dashed border-[#D7D8CF] bg-white/60 px-6 py-16 text-center">

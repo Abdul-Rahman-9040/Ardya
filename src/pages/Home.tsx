@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { businessConfig } from "../data/businessConfig";
 import { defaultRooms } from "../data/rooms";
 import { SEO } from "../components/seo/SEO";
-import { SafeImage } from "../components/common/SafeImage";
+import { RoomPhotoGallery } from "../components/rooms/RoomPhotoGallery";
 import { GoogleMapEmbed } from "../components/common/GoogleMapEmbed";
 import { BookingForm } from "../components/booking/BookingForm";
 import { RegularVsPremiumComparison } from "../components/home/RegularVsPremiumComparison";
@@ -13,7 +13,6 @@ import {
   DriveTimeCalculator,
   PackageComparisonTable,
 } from "../components/home/ModernHospitalityFeatures";
-import { FiveDayTravelItinerary } from "../components/home/FiveDayTravelItinerary";
 import { HomeFAQSection } from "../components/home/HomeFAQSection";
 import {
   ArrowRight,
@@ -202,26 +201,26 @@ export const Home: React.FC = () => {
                   className="bg-white rounded-3xl border border-[#E5E4DC] overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between"
                 >
                   <div>
-                    <div className="h-60 sm:h-72 relative overflow-hidden bg-gray-100">
-                      <SafeImage
-                        src={room.coverImage}
-                        alt={room.name}
-                        fallbackTitle={room.name}
-                        categoryName={room.category}
-                        className="w-full h-full object-cover"
+                    <div className="p-4 pb-0 sm:p-5 sm:pb-0">
+                      <RoomPhotoGallery
+                        key={room.id}
+                        roomName={room.name}
+                        coverImage={room.coverImage}
+                        roomImages={room.galleryImages}
+                        washroomImages={room.washroomImages}
                       />
-                      <span className="absolute top-3 left-3 bg-[#234B36]/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
-                        {room.category} • {room.variety}
-                      </span>
-                      <span className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md text-[#234B36] text-xs font-extrabold px-3 py-1 rounded-xl shadow">
-                        from ₹{room.startingPrice.toLocaleString("en-IN")}/person
-                      </span>
                     </div>
 
                     <div className="p-6">
                       <h3 className="font-serif text-2xl font-bold text-[#26332A]">
                         {room.name}
                       </h3>
+                      <div className="mt-2 flex items-center justify-between gap-2 text-[10px] font-bold uppercase tracking-wide text-[#536B45]">
+                        <span>{room.category} • {room.variety}</span>
+                        <span className="text-[#234B36]">
+                          from ₹{room.startingPrice.toLocaleString("en-IN")}/person
+                        </span>
+                      </div>
                       <p className="text-xs text-[#74796F] mt-1.5 line-clamp-2 leading-relaxed">
                         {room.shortDescription}
                       </p>
@@ -251,45 +250,38 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 5: 5-DAY SIGHTSEEING ITINERARY */}
-      <section className="py-10 sm:py-12 bg-white border-t border-[#E5E4DC]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <FiveDayTravelItinerary />
-        </div>
-      </section>
-
-      {/* SECTION 6: DYNAMIC INSTANT BOOKING ENGINE */}
+      {/* SECTION 5: DYNAMIC INSTANT BOOKING ENGINE */}
       <section id="instant-enquiry" className="py-10 sm:py-12 bg-[#FAF8F2] border-t border-[#E5E4DC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
           <BookingForm initialCategory={selectedCategory} />
         </div>
       </section>
 
-      {/* SECTION 7: DAY IN THE LIFE AT ARDYA */}
+      {/* SECTION 6: DAY IN THE LIFE AT ARDYA */}
       <section className="py-10 sm:py-12 bg-white border-t border-[#E5E4DC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <DayInTheLifeTimeline />
         </div>
       </section>
 
-      {/* SECTION 8: PACKAGE COMPARISON TABLE */}
+      {/* SECTION 7: PACKAGE COMPARISON TABLE */}
       <section className="py-10 sm:py-12 bg-[#FAF8F2] border-t border-[#E5E4DC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <PackageComparisonTable />
         </div>
       </section>
 
-      {/* SECTION 9: ROAD TRIP NAVIGATOR */}
+      {/* SECTION 8: ROAD TRIP NAVIGATOR */}
       <section className="py-10 sm:py-12 bg-white border-t border-[#E5E4DC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <DriveTimeCalculator />
         </div>
       </section>
 
-      {/* SECTION 10: INTERACTIVE FAQS SECTION */}
+      {/* SECTION 9: INTERACTIVE FAQS SECTION */}
       <HomeFAQSection />
 
-      {/* SECTION 11: GOOGLE MAP & LOCATION */}
+      {/* SECTION 10: GOOGLE MAP & LOCATION */}
       <section className="py-10 sm:py-12 bg-white border-t border-[#E5E4DC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">

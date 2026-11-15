@@ -70,6 +70,7 @@
 
 .home-hero__video {
   z-index: -1;
+  opacity: 1;
 }
 
 .home-hero__overlay {
@@ -77,8 +78,8 @@
   z-index: 0;
   inset: 0;
   background:
-    linear-gradient(90deg, rgb(13 31 22 / 48%), rgb(13 31 22 / 20%) 55%, rgb(13 31 22 / 42%)),
-    linear-gradient(0deg, rgb(15 38 27 / 82%), rgb(15 38 27 / 22%) 68%, rgb(15 38 27 / 32%));
+    linear-gradient(90deg, rgb(13 31 22 / 28%), rgb(13 31 22 / 10%) 55%, rgb(13 31 22 / 26%)),
+    linear-gradient(0deg, rgb(15 38 27 / 42%), rgb(15 38 27 / 8%) 68%, rgb(15 38 27 / 20%));
   pointer-events: none;
 }
 
