@@ -220,22 +220,24 @@ export const FiveDayTravelItinerary: React.FC = () => {
               className="group bg-[#FAF8F2] rounded-2xl border border-[#E5E4DC] overflow-hidden hover:shadow-md hover:border-[#234B36] transition-all flex flex-col justify-between"
             >
               <div>
-                <div className="h-40 relative overflow-hidden bg-gray-100">
-                  <SafeImage
-                    src={spot.image}
-                    alt={spot.name}
-                    fallbackTitle={spot.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold flex items-center justify-center shadow">
-                    {i + 1}
+                {spot.image && (
+                  <div className="h-40 relative overflow-hidden bg-gray-100">
+                    <SafeImage
+                      src={spot.image}
+                      alt={spot.name}
+                      fallbackTitle={spot.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-2.5 left-2.5 w-6 h-6 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold flex items-center justify-center shadow">
+                      {i + 1}
+                    </div>
+                    {spot.category && (
+                      <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-sm text-[9px] uppercase font-bold text-white tracking-wider">
+                        {spot.category}
+                      </span>
+                    )}
                   </div>
-                  {spot.category && (
-                    <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-sm text-[9px] uppercase font-bold text-white tracking-wider">
-                      {spot.category}
-                    </span>
-                  )}
-                </div>
+                )}
 
                 <div className="p-3.5">
                   <h4 className="font-serif font-bold text-sm text-[#26332A] group-hover:text-[#234B36] transition-colors">

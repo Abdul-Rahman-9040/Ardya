@@ -33,7 +33,7 @@ export const SafeImage: React.FC<SafeImageProps> = ({
           </span>
         )}
         <p className="text-[11px] text-[#74796F] mt-2 max-w-xs">
-          Ardya Homestays original property photo
+          Photo coming soon
         </p>
       </div>
     );
