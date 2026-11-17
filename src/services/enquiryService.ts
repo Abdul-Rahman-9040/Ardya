@@ -24,15 +24,27 @@ export interface EnquiryResponse {
   error?: string;
 }
 
-// Configurable endpoint for Google Apps Script Web App
-export const APPS_SCRIPT_URL =
-  (import.meta as any).env?.VITE_APPS_SCRIPT_URL || "";
+// Configurable endpoint for Google Apps Script Web App (reads from .env or Admin Panel setting)
+export function getAppsScriptUrl(): string {
+  const fromEnv = (import.meta as any).env?.VITE_APPS_SCRIPT_URL;
+  if (fromEnv) return fromEnv;
+  try {
+    const saved = localStorage.getItem("ardya_admin_config");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed.googleAppsScriptUrl) return parsed.googleAppsScriptUrl;
+    }
+  } catch {}
+  return "https://script.google.com/macros/s/AKfycbyPLYQx0ojWKCUyAP2jAYplnXLqKg6LOkvMP4Y_5Y-2JTu8hg5R2AZ6z-DAt6VqHmhL6Q/exec";
+}
 
 export async function submitBookingEnquiry(
   payload: BookingEnquiryPayload
 ): Promise<EnquiryResponse> {
+  const scriptUrl = getAppsScriptUrl();
+
   // If no Apps Script URL configured yet, simulate reliable local fallback or save to localStorage for review
-  if (!APPS_SCRIPT_URL) {
+  if (!scriptUrl) {
     console.info("Google Apps Script URL is not set yet. Storing enquiry in localStorage backup.");
     
     // Save to local storage for offline admin testing
@@ -57,7 +69,7 @@ export async function submitBookingEnquiry(
   }
 
   try {
-    const response = await fetch(APPS_SCRIPT_URL, {
+    const response = await fetch(scriptUrl, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain;charset=utf-8", // Uses text/plain to avoid CORS preflight options block on Google Apps Script

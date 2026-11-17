@@ -12,7 +12,7 @@ export const HomeFAQSection: React.FC = () => {
   };
 
   return (
-    <section className="py-10 sm:py-12 bg-[#FAF8F2] border-t border-[#E5E4DC]">
+    <section id="faqs" className="py-8 sm:py-12 bg-[#FAF8F2] border-t border-[#E5E4DC]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8">
           <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#234B36]/10 text-[#234B36] text-[11px] font-bold uppercase tracking-wider mb-2">

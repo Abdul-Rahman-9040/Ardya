@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { businessConfig } from "../../data/businessConfig";
 
 const siteUrl = "https://ardyahomestays.com";
+const defaultSocialImage = `${siteUrl}/images/ardya-hero-poster.jpg`;
 
 interface SEOProps {
   title?: string;
@@ -14,8 +15,8 @@ interface SEOProps {
 }
 
 export const SEO: React.FC<SEOProps> = ({
-  title = "Ardya Homestays | Homestay in Balehalli, Karnataka",
-  description = "Stay at Ardya Homestays in Balehalli, Karnataka, with four rooms, coffee-estate surroundings and direct booking enquiries.",
+  title = "Ardya Homestays | Coffee Estate Homestay in Balehalli, Chikkamagaluru",
+  description = "Stay at Ardya Homestays in Balehalli, Chikkamagaluru, Karnataka, with four boutique rooms, coffee-estate surroundings, campfire evenings, and direct booking enquiries.",
   canonical,
   ogImage,
   ogType = "website",
@@ -25,7 +26,9 @@ export const SEO: React.FC<SEOProps> = ({
 
   useEffect(() => {
     const canonicalUrl = new URL(canonical ?? location.pathname, `${siteUrl}/`).href;
-    const imageUrl = ogImage ? new URL(ogImage, `${siteUrl}/`).href : undefined;
+    const imageUrl = ogImage
+      ? new URL(ogImage, `${siteUrl}/`).href
+      : defaultSocialImage;
 
     document.title = title;
 
@@ -57,17 +60,13 @@ export const SEO: React.FC<SEOProps> = ({
     setMeta("property", "og:type", ogType);
     setMeta("property", "og:site_name", businessConfig.name);
     setMeta("property", "og:locale", "en_IN");
-    setMeta("name", "twitter:card", imageUrl ? "summary_large_image" : "summary");
+    setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", title);
     setMeta("name", "twitter:description", description);
 
     if (imageUrl) {
       setMeta("property", "og:image", imageUrl);
       setMeta("name", "twitter:image", imageUrl);
-    } else {
-      document.head
-        .querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]')
-        .forEach((element) => element.remove());
     }
 
     let canonicalLink = document.head.querySelector<HTMLLinkElement>(
@@ -94,14 +93,19 @@ export const SEO: React.FC<SEOProps> = ({
       "@type": "LodgingBusiness",
       "@id": `${siteUrl}/#lodging`,
       name: businessConfig.name,
+      alternateName: ["Ardya Homestay", "Ardya Homestay Balehalli", "Ardya Homestays Chikmagalur"],
       description: businessConfig.tagline,
       url: siteUrl,
+      image: imageUrl,
       telephone: `+91${businessConfig.phone}`,
       priceRange: "₹1,500–₹2,500 per person per night",
+      currenciesAccepted: "INR",
+      paymentAccepted: "Cash, UPI, Net Banking",
       numberOfRooms: businessConfig.totalRooms,
       checkinTime: "12:00:00",
       checkoutTime: "11:00:00",
       hasMap: businessConfig.googleMapsUrl,
+      sameAs: [businessConfig.googleMapsUrl],
       geo: {
         "@type": "GeoCoordinates",
         latitude: businessConfig.coordinates.lat,
@@ -115,6 +119,14 @@ export const SEO: React.FC<SEOProps> = ({
         postalCode: "577111",
         addressCountry: "IN",
       },
+      amenityFeature: [
+        { "@type": "LocationFeatureSpecification", "name": "Coffee Estate Walk", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Campfire Evening", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Home-Cooked Malnad Meals", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "24/7 Hot Water Geyser", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Attached Private Washrooms", "value": true }
+      ]
     };
     const graph: object[] = [
       lodgingSchema,

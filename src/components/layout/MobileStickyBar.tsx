@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const MobileStickyBar: React.FC = () => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#FAF8F2]/95 backdrop-blur-xl border-t border-[#E5E4DC] p-2.5 sm:hidden shadow-lg pb-safe">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#FAF8F2]/95 backdrop-blur-xl border-t border-[#E5E4DC] px-3 pt-2 pb-[max(0.625rem,env(safe-area-inset-bottom))] sm:hidden shadow-lg">
       <div className="flex items-center justify-between gap-2 max-w-md mx-auto">
         <a
           href={`tel:${businessConfig.phone}`}

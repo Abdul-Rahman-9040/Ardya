@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { defaultRooms } from "../data/rooms";
 import { SEO } from "../components/seo/SEO";
@@ -12,13 +12,26 @@ interface CategoryPageProps {
 
 export const CategoryRoomPage: React.FC<CategoryPageProps> = ({ category }) => {
   const isRegular = category === "Regular";
-  const pricing = getActivePricingConfig();
+  const [pricing, setPricing] = useState(getActivePricingConfig());
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setPricing(getActivePricingConfig());
+    };
+    window.addEventListener("ardya-pricing-updated", handleUpdate);
+    window.addEventListener("ardya-config-updated", handleUpdate);
+    return () => {
+      window.removeEventListener("ardya-pricing-updated", handleUpdate);
+      window.removeEventListener("ardya-config-updated", handleUpdate);
+    };
+  }, []);
+
   const rooms = defaultRooms.filter((r) => r.category === category);
   const categoryConfig = pricing[category];
 
   const title = isRegular
-    ? "Regular Rooms (Arabica) | Ardya Homestays – Balehalli"
-    : "Premium Rooms (Robusta) | Ardya Homestays – Balehalli";
+    ? "Regular Rooms (Arabica) | Ardya Homestays – Chikkamagaluru"
+    : "Premium Suites (Robusta) | Ardya Homestays – Chikkamagaluru";
 
   const description = isRegular
     ? "Discover Arabica 1 and Arabica 2: comfortable Regular Rooms enveloped by coffee flora at Ardya Homestays, starting at ₹1,500/person."

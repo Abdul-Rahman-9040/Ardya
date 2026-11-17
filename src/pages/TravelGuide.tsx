@@ -9,8 +9,8 @@ export const TravelGuide: React.FC = () => {
   return (
     <div>
       <SEO
-        title="Balehalli Travel Guide | Discover Scenic Karnataka with Ardya Homestays"
-        description="Comprehensive travel guide to Balehalli and the surrounding coffee hill country of Karnataka. Climate, weather, packing suggestions, and cultural tips."
+        title="Chikkamagaluru & Balehalli Travel Guide | Ardya Homestays"
+        description="Comprehensive travel guide to Balehalli and the surrounding Chikkamagaluru coffee hills of Karnataka. 5-day itinerary, Mullayanagiri, climate, packing suggestions, and local tips."
         canonical="/travel-guide"
       />
 

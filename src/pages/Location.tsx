@@ -8,8 +8,8 @@ export const LocationPage: React.FC = () => {
   return (
     <div>
       <SEO
-        title="Location & Directions | Ardya Homestays – Balehalli, Karnataka"
-        description="Verified turn-by-turn interactive Google Maps directions to Ardya Homestays in Balehalli, Karnataka. Accessible via scenic Western Ghats highways."
+        title="Location & Directions | Ardya Homestays – Balehalli, Chikkamagaluru"
+        description="Verified turn-by-turn interactive Google Maps directions to Ardya Homestays in Balehalli near Mudigere and Chikkamagaluru, Karnataka."
         canonical="/location"
       />
 

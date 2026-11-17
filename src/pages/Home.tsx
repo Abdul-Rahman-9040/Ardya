@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { businessConfig } from "../data/businessConfig";
 import { defaultRooms } from "../data/rooms";
+import { defaultFAQs } from "../data/faqs";
 import { SEO } from "../components/seo/SEO";
 import { RoomPhotoGallery } from "../components/rooms/RoomPhotoGallery";
 import { GoogleMapEmbed } from "../components/common/GoogleMapEmbed";
@@ -33,12 +34,26 @@ import { RoomCategory } from "../data/pricingConfig";
 export const Home: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<RoomCategory>("Regular");
 
+  const homeFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": defaultFAQs.slice(0, 8).map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  };
+
   return (
     <div className="overflow-x-hidden selection:bg-[#C39A58] selection:text-[#234B36] w-full">
       <SEO
-        title="Ardya Homestays | Boutique Coffee Estate Homestay in Balehalli, Karnataka"
-        description="Experience Ardya Homestays in Balehalli, Karnataka. 4 exclusive rooms in two clear categories: Regular (Arabica from ₹1,500) and Premium (Robusta from ₹2,000). Direct host confirmation on WhatsApp."
+        title="Ardya Homestays | Boutique Coffee Estate Homestay in Balehalli, Chikkamagaluru"
+        description="Experience peace at Ardya Homestays in Balehalli, Chikkamagaluru, Karnataka. 4 exclusive rooms across Regular (Arabica from ₹1,500) and Premium (Robusta from ₹2,000) with home-cooked Malnad meals, campfire, and direct host booking."
         canonical="/"
+        schema={homeFaqSchema}
       />
 
       {/* SECTION 1: LUXURY HERO */}
@@ -147,13 +162,53 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* MOBILE QUICK-JUMP BAR: Fast 1-tap navigation to eliminate endless scrolling */}
+      <nav aria-label="Quick Page Navigation" className="flex sm:hidden overflow-x-auto py-2.5 px-4 gap-2 bg-[#FAF8F2] border-b border-[#E5E4DC] sticky top-16 z-30 no-scrollbar">
+        <a
+          href="#rooms"
+          className="shrink-0 px-3 py-1.5 rounded-full bg-white border border-[#E5E4DC] text-[11px] font-bold text-[#234B36] shadow-xs active:bg-[#234B36] active:text-white transition-colors"
+        >
+          Rooms
+        </a>
+        <a
+          href="#instant-enquiry"
+          className="shrink-0 px-3 py-1.5 rounded-full bg-white border border-[#E5E4DC] text-[11px] font-bold text-[#234B36] shadow-xs active:bg-[#234B36] active:text-white transition-colors"
+        >
+          Book Now
+        </a>
+        <a
+          href="#packages"
+          className="shrink-0 px-3 py-1.5 rounded-full bg-white border border-[#E5E4DC] text-[11px] font-bold text-[#234B36] shadow-xs active:bg-[#234B36] active:text-white transition-colors"
+        >
+          Meal Packages
+        </a>
+        <a
+          href="#routes"
+          className="shrink-0 px-3 py-1.5 rounded-full bg-white border border-[#E5E4DC] text-[11px] font-bold text-[#234B36] shadow-xs active:bg-[#234B36] active:text-white transition-colors"
+        >
+          Drive Times
+        </a>
+        <a
+          href="#faqs"
+          className="shrink-0 px-3 py-1.5 rounded-full bg-white border border-[#E5E4DC] text-[11px] font-bold text-[#234B36] shadow-xs active:bg-[#234B36] active:text-white transition-colors"
+        >
+          FAQs
+        </a>
+        <a
+          href="#location"
+          className="shrink-0 px-3 py-1.5 rounded-full bg-white border border-[#E5E4DC] text-[11px] font-bold text-[#234B36] shadow-xs active:bg-[#234B36] active:text-white transition-colors"
+        >
+          Map &amp; Route
+        </a>
+      </nav>
+
       {/* SECTION 3: NEW DEDICATED REGULAR VS PREMIUM COMPARISON SECTION */}
-      <section className="py-10 sm:py-14 bg-white border-b border-[#E5E4DC]">
+      <section id="rooms" className="py-8 sm:py-14 bg-white border-b border-[#E5E4DC]">
         <RegularVsPremiumComparison onSelectCategory={(cat) => setSelectedCategory(cat)} />
       </section>
 
       {/* SECTION 4: 4 GUEST ROOMS PREVIEW */}
-      <section className="py-10 sm:py-12 bg-[#FAF8F2]">
+      <section className="py-8 sm:py-12 bg-[#FAF8F2]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
             <div>
@@ -250,9 +305,20 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 5: DYNAMIC INSTANT BOOKING ENGINE */}
-      <section id="instant-enquiry" className="py-10 sm:py-12 bg-[#FAF8F2] border-t border-[#E5E4DC]">
+      {/* SECTION 5: ONLINE BOOKING ENQUIRY FORM */}
+      <section id="instant-enquiry" className="py-10 sm:py-14 bg-[#FAF8F2] border-t border-[#E5E4DC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+          <div className="text-center max-w-2xl mx-auto mb-2">
+            <span className="text-xs uppercase tracking-widest font-extrabold text-[#C39A58] block mb-1">
+              Direct Reservation Desk
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#234B36]">
+              Online Booking Enquiry Form
+            </h2>
+            <p className="text-xs sm:text-sm text-[#74796F] mt-2 leading-relaxed">
+              Calculate live prices, check inclusions, and submit your reservation enquiry directly to the host.
+            </p>
+          </div>
           <BookingForm initialCategory={selectedCategory} />
         </div>
       </section>
@@ -265,14 +331,14 @@ export const Home: React.FC = () => {
       </section>
 
       {/* SECTION 7: PACKAGE COMPARISON TABLE */}
-      <section className="py-10 sm:py-12 bg-[#FAF8F2] border-t border-[#E5E4DC]">
+      <section id="packages" className="py-8 sm:py-12 bg-[#FAF8F2] border-t border-[#E5E4DC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <PackageComparisonTable />
         </div>
       </section>
 
       {/* SECTION 8: ROAD TRIP NAVIGATOR */}
-      <section className="py-10 sm:py-12 bg-white border-t border-[#E5E4DC]">
+      <section id="routes" className="py-8 sm:py-12 bg-white border-t border-[#E5E4DC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <DriveTimeCalculator />
         </div>
@@ -282,7 +348,7 @@ export const Home: React.FC = () => {
       <HomeFAQSection />
 
       {/* SECTION 10: GOOGLE MAP & LOCATION */}
-      <section className="py-10 sm:py-12 bg-white border-t border-[#E5E4DC]">
+      <section id="location" className="py-8 sm:py-12 bg-white border-t border-[#E5E4DC]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
             <div>

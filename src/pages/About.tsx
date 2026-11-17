@@ -10,8 +10,8 @@ export const About: React.FC = () => {
   return (
     <div>
       <SEO
-        title="About Us | Ardya Homestays – Balehalli, Karnataka"
-        description="Learn about Ardya Homestays: a boutique four-room homestay surrounded by coffee estates in Balehalli, Karnataka."
+        title="About Us | Ardya Homestays – Coffee Estate Stay in Chikkamagaluru"
+        description="Learn about Ardya Homestays: a boutique 4-room coffee plantation homestay in Balehalli, Chikkamagaluru, Karnataka. Discover our hospitality, rooms, and estate."
         canonical="/about"
       />
 

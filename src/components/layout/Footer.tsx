@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { businessConfig } from "../../data/businessConfig";
-import { Phone, MessageCircle, MapPin, Shield, Sparkles } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Sparkles } from "lucide-react";
 
 export const Footer: React.FC = () => {
   return (
@@ -87,10 +87,6 @@ export const Footer: React.FC = () => {
             </a>
             <Link to="/privacy-policy" className="hover:text-white transition-colors">
               Privacy
-            </Link>
-            <Link to="/admin/login" className="flex items-center space-x-1 hover:text-white transition-colors">
-              <Shield className="w-3 h-3" />
-              <span>Admin</span>
             </Link>
           </div>
         </div>
