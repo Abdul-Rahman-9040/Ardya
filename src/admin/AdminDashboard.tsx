@@ -93,12 +93,14 @@ export const AdminDashboard: React.FC = () => {
   const updatePrice = (
     category: RoomCategory,
     pkg: "stay-only" | "stay-with-meals",
-    value: number
+    rawValue: string
   ) => {
+    // If the input is emptied, allow 0 without locking the user into a leading 0 when they start typing
+    const cleanNum = rawValue === "" ? 0 : Number(rawValue.replace(/^0+(?=\d)/, ""));
     const updated = { ...data.pricingConfig };
-    updated[category].packages[pkg].pricePerPerson = value;
+    updated[category].packages[pkg].pricePerPerson = cleanNum;
     if (pkg === "stay-only") {
-      updated[category].startingPrice = value;
+      updated[category].startingPrice = cleanNum;
     }
     setData({ ...data, pricingConfig: updated });
   };
@@ -467,8 +469,9 @@ export const AdminDashboard: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={data.pricingConfig.Regular.packages["stay-only"].pricePerPerson}
-                      onChange={(e) => updatePrice("Regular", "stay-only", Number(e.target.value))}
+                      placeholder="e.g. 1500"
+                      value={data.pricingConfig.Regular.packages["stay-only"].pricePerPerson === 0 ? "" : data.pricingConfig.Regular.packages["stay-only"].pricePerPerson}
+                      onChange={(e) => updatePrice("Regular", "stay-only", e.target.value)}
                       className="w-full px-3.5 py-2.5 text-sm bg-[#FAF8F2] border border-[#E5E4DC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#234B36]"
                     />
                   </div>
@@ -479,8 +482,9 @@ export const AdminDashboard: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={data.pricingConfig.Regular.packages["stay-with-meals"].pricePerPerson}
-                      onChange={(e) => updatePrice("Regular", "stay-with-meals", Number(e.target.value))}
+                      placeholder="e.g. 2000"
+                      value={data.pricingConfig.Regular.packages["stay-with-meals"].pricePerPerson === 0 ? "" : data.pricingConfig.Regular.packages["stay-with-meals"].pricePerPerson}
+                      onChange={(e) => updatePrice("Regular", "stay-with-meals", e.target.value)}
                       className="w-full px-3.5 py-2.5 text-sm bg-[#FAF8F2] border border-[#E5E4DC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#234B36]"
                     />
                   </div>
@@ -510,8 +514,9 @@ export const AdminDashboard: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={data.pricingConfig.Premium.packages["stay-only"].pricePerPerson}
-                      onChange={(e) => updatePrice("Premium", "stay-only", Number(e.target.value))}
+                      placeholder="e.g. 2000"
+                      value={data.pricingConfig.Premium.packages["stay-only"].pricePerPerson === 0 ? "" : data.pricingConfig.Premium.packages["stay-only"].pricePerPerson}
+                      onChange={(e) => updatePrice("Premium", "stay-only", e.target.value)}
                       className="w-full px-3.5 py-2.5 text-sm bg-[#FAF8F2] border border-[#E5E4DC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#234B36]"
                     />
                   </div>
@@ -522,8 +527,9 @@ export const AdminDashboard: React.FC = () => {
                     </label>
                     <input
                       type="number"
-                      value={data.pricingConfig.Premium.packages["stay-with-meals"].pricePerPerson}
-                      onChange={(e) => updatePrice("Premium", "stay-with-meals", Number(e.target.value))}
+                      placeholder="e.g. 2500"
+                      value={data.pricingConfig.Premium.packages["stay-with-meals"].pricePerPerson === 0 ? "" : data.pricingConfig.Premium.packages["stay-with-meals"].pricePerPerson}
+                      onChange={(e) => updatePrice("Premium", "stay-with-meals", e.target.value)}
                       className="w-full px-3.5 py-2.5 text-sm bg-[#FAF8F2] border border-[#E5E4DC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#234B36]"
                     />
                   </div>

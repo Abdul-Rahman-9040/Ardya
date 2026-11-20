@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Lock, Mail, KeyRound, ArrowRight, AlertCircle, CheckCircle2, RefreshCw, Sparkles, ShieldCheck } from "lucide-react";
-import { businessConfig } from "../data/businessConfig";
+import { Mail, ArrowRight, AlertCircle, CheckCircle2, ShieldCheck } from "lucide-react";
 import { getAppsScriptUrl } from "../services/enquiryService";
 
 export const AdminLogin: React.FC = () => {
-  const [loginMethod, setLoginMethod] = useState<"otp" | "passcode">("otp");
   const [email, setEmail] = useState((import.meta as any).env?.VITE_ADMIN_EMAIL || "");
   const [otp, setOtp] = useState("");
-  const [accessKey, setAccessKey] = useState("");
   const [step, setStep] = useState<"enter-email" | "enter-otp">("enter-email");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,8 +32,7 @@ export const AdminLogin: React.FC = () => {
     setLoading(true);
 
     try {
-      // Send request to Google Apps Script
-      await fetch(appsScriptUrl, {
+      const response = await fetch(appsScriptUrl, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
@@ -45,34 +41,30 @@ export const AdminLogin: React.FC = () => {
         }),
       });
 
+      const resData = await response.json().catch(() => null);
+      if (resData && !resData.success) {
+        setError(resData.error || "This email is not registered as an authorized administrator.");
+        setLoading(false);
+        return;
+      }
+
       setSuccessMsg("A 6-digit verification code has been sent. Please check your email inbox & spam folder.");
       setStep("enter-otp");
       setCountdown(60);
     } catch {
-      setSuccessMsg("Verification code dispatched! (For local test, use code: 123456)");
-      setStep("enter-otp");
-      setCountdown(60);
+      setError("Unable to connect to verification server. Please try again or check network connection.");
     } finally {
       setLoading(false);
     }
   };
 
-  // Verify OTP
+  // Verify OTP strictly via backend
   const handleVerifyOTP = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
 
-    // Development & Master OTP fallback (or actual verified code)
     const cleanOtp = otp.trim();
-    if (cleanOtp === "123456" || cleanOtp === "202611" || cleanOtp.length === 6) {
-      setTimeout(() => {
-        sessionStorage.setItem("ardya_admin_auth", "true");
-        sessionStorage.setItem("ardya_admin_email", email);
-        navigate("/admin");
-      }, 500);
-      return;
-    }
 
     try {
       const response = await fetch(appsScriptUrl, {
@@ -87,35 +79,16 @@ export const AdminLogin: React.FC = () => {
       const data = await response.json();
       if (data.success) {
         sessionStorage.setItem("ardya_admin_auth", "true");
-        sessionStorage.setItem("ardya_admin_email", email);
+        sessionStorage.setItem("ardya_admin_email", email.trim().toLowerCase());
         navigate("/admin");
       } else {
-        setError(data.error || "Invalid OTP code. Please verify and try again.");
+        setError(data.error || "Invalid verification code. Please check and try again.");
       }
     } catch {
-      setError("Invalid OTP or server timeout. For quick access, test code is 123456.");
+      setError("Verification failed or server timed out. Please try again.");
     } finally {
       setLoading(false);
     }
-  };
-
-  // Passcode login (fallback)
-  const handlePasscodeLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
-
-    const validKey = (import.meta as any).env?.VITE_ADMIN_KEY || "ardya2026";
-
-    setTimeout(() => {
-      if (accessKey === validKey) {
-        sessionStorage.setItem("ardya_admin_auth", "true");
-        navigate("/admin");
-      } else {
-        setError("Invalid Admin Access Passcode. Default is ardya2026.");
-      }
-      setLoading(false);
-    }, 400);
   };
 
   return (
@@ -133,42 +106,8 @@ export const AdminLogin: React.FC = () => {
             Ardya Admin Login
           </h1>
           <p className="text-xs text-[#74796F]">
-            Secure Google Apps Script OTP authentication
+            Secure One-Time Passcode (OTP) verification
           </p>
-        </div>
-
-        {/* Auth Method Switcher Tabs */}
-        <div className="flex bg-[#FAF8F2] p-1 rounded-xl border border-[#E5E4DC]">
-          <button
-            type="button"
-            onClick={() => {
-              setLoginMethod("otp");
-              setError(null);
-            }}
-            className={`flex-1 py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center space-x-1.5 ${
-              loginMethod === "otp"
-                ? "bg-[#234B36] text-white shadow-xs"
-                : "text-[#74796F] hover:text-[#26332A]"
-            }`}
-          >
-            <Mail className="w-3.5 h-3.5" />
-            <span>Email OTP Login</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setLoginMethod("passcode");
-              setError(null);
-            }}
-            className={`flex-1 py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center space-x-1.5 ${
-              loginMethod === "passcode"
-                ? "bg-[#234B36] text-white shadow-xs"
-                : "text-[#74796F] hover:text-[#26332A]"
-            }`}
-          >
-            <KeyRound className="w-3.5 h-3.5" />
-            <span>Master Passcode</span>
-          </button>
         </div>
 
         {/* Alerts */}
@@ -186,122 +125,85 @@ export const AdminLogin: React.FC = () => {
           </div>
         )}
 
-        {/* METHOD 1: OTP AUTHENTICATION */}
-        {loginMethod === "otp" && (
-          <>
-            {step === "enter-email" ? (
-              <form onSubmit={handleRequestOTP} className="space-y-4">
-                <div>
-                  <label className="block text-xs font-semibold text-[#26332A] mb-1.5">
-                    Authorized Administrator Email
-                  </label>
-                  <div className="relative">
-                    <Mail className="w-4 h-4 absolute left-3.5 top-3.5 text-[#74796F]" />
-                    <input
-                      type="email"
-                      required
-                      placeholder="Enter administrator email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 text-sm bg-[#FAF8F2] border border-[#E5E4DC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#234B36]"
-                    />
-                  </div>
-                  <p className="text-[10px] text-[#74796F] mt-1.5">
-                    A 6-digit one-time passcode will be sent via Google Apps Script.
-                  </p>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-[#234B36] hover:bg-[#536B45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md disabled:opacity-50 min-h-[44px]"
-                >
-                  <span>{loading ? "Sending OTP..." : "Send Verification Code"}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
-            ) : (
-              <form onSubmit={handleVerifyOTP} className="space-y-4">
-                <div>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <label className="block text-xs font-semibold text-[#26332A]">
-                      Enter 6-Digit Verification Code
-                    </label>
-                    <button
-                      type="button"
-                      onClick={() => setStep("enter-email")}
-                      className="text-[11px] text-[#C39A58] hover:underline font-semibold"
-                    >
-                      Change Email
-                    </button>
-                  </div>
-                  <input
-                    type="text"
-                    required
-                    maxLength={6}
-                    placeholder="• • • • • •"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                    className="w-full text-center tracking-[0.5em] text-2xl font-bold font-mono py-2.5 bg-[#FAF8F2] border-2 border-[#234B36] rounded-xl focus:outline-none shadow-inner"
-                  />
-                  <div className="flex items-center justify-between mt-2 text-[11px] text-[#74796F]">
-                    <span>Sent to: <strong>{email}</strong></span>
-                    {countdown > 0 ? (
-                      <span className="text-amber-700 font-semibold">Resend in {countdown}s</span>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={handleRequestOTP}
-                        className="text-[#234B36] font-bold hover:underline"
-                      >
-                        Resend Code
-                      </button>
-                    )}
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={loading || otp.length < 6}
-                  className="w-full flex items-center justify-center space-x-2 py-3.5 px-4 bg-[#C39A58] hover:bg-[#b08745] text-[#234B36] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md disabled:opacity-50 min-h-[44px]"
-                >
-                  <span>{loading ? "Verifying..." : "Verify & Access Panel"}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
-            )}
-          </>
-        )}
-
-        {/* METHOD 2: MASTER PASSCODE (Instant fallback) */}
-        {loginMethod === "passcode" && (
-          <form onSubmit={handlePasscodeLogin} className="space-y-4">
+        {/* STEP 1: ENTER ADMIN EMAIL */}
+        {step === "enter-email" ? (
+          <form onSubmit={handleRequestOTP} className="space-y-4">
             <div>
               <label className="block text-xs font-semibold text-[#26332A] mb-1.5">
-                Master Security Passcode
+                Authorized Administrator Email
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 absolute left-3.5 top-3.5 text-[#74796F]" />
+                <Mail className="w-4 h-4 absolute left-3.5 top-3.5 text-[#74796F]" />
                 <input
-                  type="password"
+                  type="email"
                   required
-                  placeholder="Enter passcode"
-                  value={accessKey}
-                  onChange={(e) => setAccessKey(e.target.value)}
+                  placeholder="e.g. ardyahomestays@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-2.5 text-sm bg-[#FAF8F2] border border-[#E5E4DC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#234B36]"
                 />
               </div>
               <p className="text-[10px] text-[#74796F] mt-1.5">
-                Default access passcode: <code className="bg-gray-100 px-1 py-0.5 rounded text-gray-800 font-bold">ardya2026</code>
+                A 6-digit one-time passcode will be sent to your authorized inbox.
               </p>
             </div>
 
             <button
               type="submit"
-              disabled={loading}
-              className="w-full flex items-center justify-center space-x-2 py-3.5 px-4 bg-[#234B36] hover:bg-[#536B45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md disabled:opacity-50 min-h-[44px]"
+              disabled={loading || !email.trim()}
+              className="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-[#234B36] hover:bg-[#536B45] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md disabled:opacity-50 min-h-[44px]"
             >
-              <span>{loading ? "Verifying..." : "Sign In with Passcode"}</span>
+              <span>{loading ? "Sending Code..." : "Send Verification Code"}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </form>
+        ) : (
+          /* STEP 2: ENTER OTP */
+          <form onSubmit={handleVerifyOTP} className="space-y-4">
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-semibold text-[#26332A]">
+                  Enter 6-Digit Verification Code
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setStep("enter-email")}
+                  className="text-[11px] text-[#C39A58] hover:underline font-semibold"
+                >
+                  Change Email
+                </button>
+              </div>
+              <input
+                type="text"
+                required
+                maxLength={6}
+                placeholder="• • • • • •"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+                className="w-full text-center tracking-[0.5em] text-2xl font-bold font-mono py-2.5 bg-[#FAF8F2] border-2 border-[#234B36] rounded-xl focus:outline-none shadow-inner"
+              />
+              <div className="flex items-center justify-between mt-2 text-[11px] text-[#74796F]">
+                <span className="truncate max-w-[200px]">Sent to: <strong>{email}</strong></span>
+                {countdown > 0 ? (
+                  <span className="text-amber-700 font-semibold">Resend in {countdown}s</span>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleRequestOTP}
+                    className="text-[#234B36] font-bold hover:underline"
+                  >
+                    Resend Code
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading || otp.length < 6}
+              className="w-full flex items-center justify-center space-x-2 py-3.5 px-4 bg-[#C39A58] hover:bg-[#b08745] text-[#234B36] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md disabled:opacity-50 min-h-[44px]"
+            >
+              <span>{loading ? "Verifying..." : "Verify & Access Panel"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
