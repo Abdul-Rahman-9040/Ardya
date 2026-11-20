@@ -9,7 +9,19 @@ import { BedDouble, Users, Waves, Check, Sparkles } from "lucide-react";
 
 export const UnifiedRoomsBookingPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const pricing = getActivePricingConfig();
+  const [pricing, setPricing] = useState(getActivePricingConfig());
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setPricing(getActivePricingConfig());
+    };
+    window.addEventListener("ardya-pricing-updated", handleUpdate);
+    window.addEventListener("ardya-config-updated", handleUpdate);
+    return () => {
+      window.removeEventListener("ardya-pricing-updated", handleUpdate);
+      window.removeEventListener("ardya-config-updated", handleUpdate);
+    };
+  }, []);
 
   // Selected room state (sync with query param ?room=)
   const roomParam = searchParams.get("room") || "arabica-1";
@@ -43,8 +55,8 @@ export const UnifiedRoomsBookingPage: React.FC = () => {
   return (
     <div className="w-full overflow-x-hidden">
       <SEO
-        title="Rooms, Photos & Instant Booking | Ardya Homestays – Balehalli"
-        description="Explore verified HD camera and drone photos for all 4 rooms at Ardya Homestays. Check live rates (Regular from ₹1,500, Premium from ₹2,000) and book instantly on WhatsApp."
+        title="Rooms, Rates & Instant Booking | Ardya Homestays – Chikkamagaluru"
+        description="Explore Arabica and Robusta Premium rooms at Ardya Homestays, Balehalli, Chikkamagaluru. Live rates from ₹1,500/person, en-suite washrooms, estate views, and WhatsApp booking."
         canonical="/rooms"
       />
 
@@ -59,7 +71,7 @@ export const UnifiedRoomsBookingPage: React.FC = () => {
             Our Rooms &amp; Instant Booking
           </h1>
           <p className="text-xs sm:text-sm text-[#E5E4DC]/80 max-w-xl mx-auto leading-relaxed">
-            Select any room below to view its multi-angle HD camera &amp; drone photos, check transparent pricing, and enquire directly with the host on WhatsApp.
+            Select any room below to view its multi-angle HD camera &amp; drone photos, check transparent pricing, and submit your online booking enquiry or chat directly with the host.
           </p>
         </div>
       </section>

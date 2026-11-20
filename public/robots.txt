@@ -4,4 +4,20 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/
 
+# AI Crawlers & Answer Engines (GEO & AEO optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://ardyahomestays.com/sitemap.xml

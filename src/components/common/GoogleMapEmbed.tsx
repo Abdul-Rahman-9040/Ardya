@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { businessConfig } from "../../data/businessConfig";
-import { MapPin, Navigation, ExternalLink, Compass } from "lucide-react";
+import { MapPin, Navigation, ExternalLink, Compass, Hand } from "lucide-react";
 
 interface GoogleMapEmbedProps {
   title?: string;
@@ -12,13 +12,18 @@ interface GoogleMapEmbedProps {
 export const GoogleMapEmbed: React.FC<GoogleMapEmbedProps> = ({
   title = "Ardya Homestays Location",
   subtitle = "Balehalli, Karnataka",
-  heightClass = "h-[420px]",
+  heightClass = "h-[320px] sm:h-[420px]",
   showCard = true,
 }) => {
+  const [isInteractive, setIsInteractive] = useState(false);
+
   return (
     <div className="relative rounded-2xl overflow-hidden border border-[#E5E4DC] shadow-sm bg-white">
-      {/* Live Interactive Google Maps Embed */}
-      <div className={`w-full ${heightClass} relative z-0`}>
+      {/* Live Interactive Google Maps Embed with Touch-Scroll Protection */}
+      <div
+        className={`w-full ${heightClass} relative z-0`}
+        onClick={() => setIsInteractive(true)}
+      >
         <iframe
           title={title}
           src={businessConfig.googleMapsEmbedUrl}
@@ -28,8 +33,40 @@ export const GoogleMapEmbed: React.FC<GoogleMapEmbedProps> = ({
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          className="w-full h-full grayscale-[25%] contrast-[1.05] hover:grayscale-0 transition-all duration-500"
+          className={`w-full h-full grayscale-[25%] contrast-[1.05] hover:grayscale-0 transition-all duration-500 ${
+            !isInteractive ? "pointer-events-none sm:pointer-events-auto" : "pointer-events-auto"
+          }`}
         />
+
+        {/* Mobile tap-to-interact barrier to prevent scroll trapping */}
+        {!isInteractive && (
+          <div className="absolute inset-0 bg-transparent sm:hidden flex items-end justify-center p-3 pointer-events-auto">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsInteractive(true);
+              }}
+              className="px-3.5 py-1.5 rounded-full bg-[#234B36]/90 backdrop-blur-md text-white text-[11px] font-semibold flex items-center space-x-1.5 shadow-lg border border-white/20 active:scale-95 transition-all"
+            >
+              <Hand className="w-3.5 h-3.5 text-[#C39A58]" />
+              <span>Tap to explore map</span>
+            </button>
+          </div>
+        )}
+
+        {isInteractive && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsInteractive(false);
+            }}
+            className="absolute top-3 right-3 sm:hidden px-2.5 py-1 rounded-full bg-black/70 text-white text-[10px] font-bold shadow-md z-10"
+          >
+            Lock map scroll
+          </button>
+        )}
       </div>
 
       {/* Floating Modern Overlay Card */}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SafeImage } from "../common/SafeImage";
 import { getActivePricingConfig, RoomCategory } from "../../data/pricingConfig";
@@ -24,7 +24,20 @@ interface CategoryComparisonProps {
 export const RegularVsPremiumComparison: React.FC<CategoryComparisonProps> = ({
   onSelectCategory,
 }) => {
-  const pricing = getActivePricingConfig();
+  const [mobileCategory, setMobileCategory] = useState<RoomCategory>("Regular");
+  const [pricing, setPricing] = useState(getActivePricingConfig());
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setPricing(getActivePricingConfig());
+    };
+    window.addEventListener("ardya-pricing-updated", handleUpdate);
+    window.addEventListener("ardya-config-updated", handleUpdate);
+    return () => {
+      window.removeEventListener("ardya-pricing-updated", handleUpdate);
+      window.removeEventListener("ardya-config-updated", handleUpdate);
+    };
+  }, []);
 
   const regularRooms = defaultRooms.filter((r) => r.category === "Regular");
   const premiumRooms = defaultRooms.filter((r) => r.category === "Premium");
@@ -307,7 +320,61 @@ export const RegularVsPremiumComparison: React.FC<CategoryComparisonProps> = ({
             </p>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Mobile View: Toggle Button + Clean Vertical Cards */}
+          <div className="block sm:hidden space-y-4">
+            <div className="flex bg-[#FAF8F2] p-1 rounded-xl border border-[#E5E4DC]">
+              <button
+                type="button"
+                onClick={() => setMobileCategory("Regular")}
+                className={`flex-1 py-2 px-3 text-xs font-bold rounded-lg transition-all ${
+                  mobileCategory === "Regular"
+                    ? "bg-[#234B36] text-white shadow-xs"
+                    : "text-[#74796F]"
+                }`}
+              >
+                Arabica Regular (₹{pricing.Regular.startingPrice.toLocaleString("en-IN")})
+              </button>
+              <button
+                type="button"
+                onClick={() => setMobileCategory("Premium")}
+                className={`flex-1 py-2 px-3 text-xs font-bold rounded-lg transition-all ${
+                  mobileCategory === "Premium"
+                    ? "bg-[#234B36] text-white shadow-xs"
+                    : "text-[#74796F]"
+                }`}
+              >
+                Robusta Premium (₹{pricing.Premium.startingPrice.toLocaleString("en-IN")})
+              </button>
+            </div>
+
+            <div className="p-4 rounded-xl bg-[#FAF8F2] border border-[#E5E4DC] divide-y divide-[#E5E4DC]/60 text-xs">
+              {comparisonFeatures.map((f, i) => {
+                const val = mobileCategory === "Regular" ? f.regular : f.premium;
+                return (
+                  <div key={i} className="py-2.5 flex items-center justify-between gap-2 first:pt-0 last:pb-0">
+                    <span className="text-[11px] text-[#74796F] font-medium">{f.feature}</span>
+                    <span className="text-[11px] font-semibold text-[#26332A] text-right">
+                      {typeof val === "boolean" ? (
+                        val ? (
+                          <span className="inline-flex items-center text-emerald-600 space-x-1">
+                            <Check className="w-3.5 h-3.5" />
+                            <span>Yes</span>
+                          </span>
+                        ) : (
+                          <span className="text-gray-400">—</span>
+                        )
+                      ) : (
+                        val
+                      )}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Desktop View: Side-by-Side Table */}
+          <div className="hidden sm:block overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
                 <tr className="border-b border-[#E5E4DC]">

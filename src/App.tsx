@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
@@ -16,14 +16,15 @@ import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 import { AdminLogin } from "./admin/AdminLogin";
 import { AdminDashboard } from "./admin/AdminDashboard";
 import { ScrollReveal } from "./components/common/ScrollReveal";
+import { fetchCloudSiteConfig } from "./services/adminConfigService";
 
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F2] text-[#26332A] pb-16 lg:pb-0">
+    <div className="min-h-screen flex flex-col bg-[#FAF8F2] text-[#26332A] pb-20 sm:pb-0 w-full max-w-full overflow-x-clip">
       <Navbar />
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="flex-1 w-full max-w-full overflow-x-clip">
         <ScrollReveal key={location.pathname}>{children}</ScrollReveal>
       </main>
       <Footer />
@@ -33,6 +34,11 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 };
 
 export function App() {
+  useEffect(() => {
+    // Non-blocking background sync with Google Sheets (hydrates live prices worldwide)
+    fetchCloudSiteConfig();
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>

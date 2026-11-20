@@ -223,6 +223,8 @@ export const DriveTimeCalculator: React.FC = () => {
 
 // 4. TRANSPARENT WHAT'S INCLUDED VS EXCLUDED COMPARISON TABLE
 export const PackageComparisonTable: React.FC = () => {
+  const [selectedMobilePkg, setSelectedMobilePkg] = useState<"meals" | "stay">("meals");
+
   const features = [
     { name: "Homestay Accommodation", stayOnly: true, stayWithMeals: true },
     { name: "Complimentary Malnad Breakfast", stayOnly: false, stayWithMeals: true },
@@ -236,7 +238,7 @@ export const PackageComparisonTable: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white rounded-3xl border border-[#E5E4DC] p-6 sm:p-10 shadow-sm space-y-6">
+    <div className="bg-white rounded-3xl border border-[#E5E4DC] p-5 sm:p-10 shadow-sm space-y-6">
       <div className="text-center max-w-xl mx-auto">
         <span className="text-xs uppercase tracking-widest font-bold text-[#C39A58]">
           Transparent Comparison
@@ -249,7 +251,73 @@ export const PackageComparisonTable: React.FC = () => {
         </p>
       </div>
 
-      <div className="overflow-x-auto">
+      {/* Mobile Card View (No Horizontal Overflow) */}
+      <div className="block sm:hidden space-y-4">
+        {/* Toggle Switch */}
+        <div className="flex bg-[#FAF8F2] p-1 rounded-xl border border-[#E5E4DC]">
+          <button
+            type="button"
+            onClick={() => setSelectedMobilePkg("meals")}
+            className={`flex-1 py-2 px-3 text-xs font-bold rounded-lg transition-all ${
+              selectedMobilePkg === "meals"
+                ? "bg-[#234B36] text-white shadow-xs"
+                : "text-[#74796F]"
+            }`}
+          >
+            Stay + Meals (₹2,000)
+          </button>
+          <button
+            type="button"
+            onClick={() => setSelectedMobilePkg("stay")}
+            className={`flex-1 py-2 px-3 text-xs font-bold rounded-lg transition-all ${
+              selectedMobilePkg === "stay"
+                ? "bg-[#234B36] text-white shadow-xs"
+                : "text-[#74796F]"
+            }`}
+          >
+            Stay Only (₹1,500)
+          </button>
+        </div>
+
+        {/* Feature List for Selected Package */}
+        <div className="p-4 rounded-2xl bg-[#FAF8F2] border border-[#E5E4DC] space-y-2.5">
+          <div className="flex items-baseline justify-between border-b border-[#E5E4DC] pb-2">
+            <span className="font-serif font-bold text-base text-[#234B36]">
+              {selectedMobilePkg === "meals" ? "Stay + Meals Package" : "Stay Only Package"}
+            </span>
+            <span className="font-serif text-lg font-extrabold text-[#234B36]">
+              {selectedMobilePkg === "meals" ? "₹2,000" : "₹1,500"}
+              <span className="text-[10px] text-[#74796F] font-normal block text-right">/ person / night</span>
+            </span>
+          </div>
+
+          <div className="space-y-2 pt-1 text-xs">
+            {features.map((f, i) => {
+              const isIncluded = selectedMobilePkg === "meals" ? f.stayWithMeals : f.stayOnly;
+              return (
+                <div key={i} className="flex items-center justify-between py-1 border-b border-[#E5E4DC]/50 last:border-0">
+                  <span className={`text-[11px] ${isIncluded ? "text-[#26332A] font-medium" : "text-[#74796F]"}`}>
+                    {f.name}
+                  </span>
+                  {isIncluded ? (
+                    <span className="inline-flex items-center space-x-1 text-emerald-600 font-semibold text-[10px] shrink-0">
+                      <Check className="w-3.5 h-3.5" />
+                      <span>Included</span>
+                    </span>
+                  ) : (
+                    <span className="text-gray-400 text-[10px] shrink-0">
+                      {f.name.includes("Lunch") ? "On Request" : "Not Included"}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Table View */}
+      <div className="hidden sm:block overflow-x-auto">
         <table className="w-full text-left text-xs">
           <thead>
             <tr className="border-b border-[#E5E4DC]">
