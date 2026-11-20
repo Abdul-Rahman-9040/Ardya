@@ -289,8 +289,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     }
 
     const cleanPhone = mobileNumber.replace(/\D/g, "");
-    if (cleanPhone.length < 10) {
-      setErrorMessage("Please enter a valid 10-digit mobile number so the host can contact you.");
+    // Support standard 10-digit Indian numbers (or numbers prefixed with 91 / 0)
+    const valid10Digit = cleanPhone.length === 10 ? cleanPhone : (cleanPhone.length > 10 && cleanPhone.startsWith("91")) ? cleanPhone.slice(2) : cleanPhone.startsWith("0") ? cleanPhone.slice(1) : cleanPhone;
+    
+    if (valid10Digit.length !== 10 || !/^[6-9]\d{9}$/.test(valid10Digit)) {
+      setErrorMessage("Please enter a valid 10-digit Indian mobile number (e.g. 9876543210) starting with 6, 7, 8, or 9.");
       return;
     }
 
@@ -308,7 +311,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
     const payload: BookingEnquiryPayload = {
       guestName: guestName.trim(),
-      mobileNumber: cleanPhone,
+      mobileNumber: valid10Digit,
       email: email.trim() || undefined,
       checkIn,
       checkOut,
@@ -1031,7 +1034,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   <input
                     type="tel"
                     required
-                    placeholder="e.g. 98765 43210"
+                    maxLength={14}
+                    placeholder="10-digit mobile number (e.g. 9876543210)"
                     value={mobileNumber}
                     onChange={(e) => setMobileNumber(e.target.value)}
                     className="w-full pl-9 pr-3.5 py-2 text-xs bg-white border border-[#E5E4DC] rounded-xl text-[#26332A] font-medium focus:outline-none focus:ring-1 focus:ring-[#234B36]"

@@ -31,7 +31,7 @@ export const businessConfig: BusinessConfig = {
   whatsapp: "+918277446061",
   locationReference: "Balehalli, Karnataka",
   fullAddressNote: "near Sanjivini Vana, Mullunde, Baallehalli, Kelgoor post, Balehalli, Karnataka 577111",
-  googleMapsUrl: "https://maps.app.goo.gl/vKvFyDTN1DZ9L2XN6?g_st=ic",
+  googleMapsUrl: "https://maps.app.goo.gl/4hgfN6aXVbVoeRfF6?g_st=ic",
   // Standard responsive Google Maps embed query based on verified location pin
   googleMapsEmbedUrl: "https://maps.google.com/maps?q=near+Sanjivini+Vana,+Mullunde,+Baallehalli,+Kelgoor+post,+Balehalli,+Karnataka+577111&t=&z=14&ie=UTF8&iwloc=&output=embed",
   coordinates: {
