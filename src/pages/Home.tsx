@@ -48,38 +48,40 @@ export const Home: React.FC = () => {
   };
 
   return (
-    <div className="overflow-x-hidden selection:bg-[#C39A58] selection:text-[#234B36] w-full">
+    <div className="overflow-x-clip selection:bg-[#C39A58] selection:text-[#234B36] w-full">
       <SEO
-        title="Ardya Homestays | Boutique Coffee Estate Homestay in Balehalli, Chikkamagaluru"
+        title="Ardya Homestays | Coffee Estate Homestay in Balehalli, Chikkamagaluru"
         description="Experience peace at Ardya Homestays in Balehalli, Chikkamagaluru, Karnataka. 4 exclusive rooms across Regular (Arabica from ₹1,500) and Premium (Robusta from ₹2,000) with home-cooked Malnad meals, campfire, and direct host booking."
         canonical="/"
         schema={homeFaqSchema}
       />
 
       {/* SECTION 1: LUXURY HERO */}
-      <section className="home-hero relative flex items-center justify-center bg-[#17281F] text-white overflow-hidden w-full">
+      <section className="home-hero relative flex items-center justify-center bg-[#17281F] text-white overflow-hidden w-full touch-pan-y">
         <img
           src="/images/ardya-hero-poster.jpg"
           alt=""
           aria-hidden="true"
           fetchPriority="high"
           decoding="async"
-          className="home-hero__poster"
+          className="home-hero__poster pointer-events-none select-none"
         />
         <video
-          className="home-hero__video"
+          className="home-hero__video hidden md:block pointer-events-none select-none"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          disablePictureInPicture
+          disableRemotePlayback
+          preload="none"
           poster="/images/ardya-hero-poster.jpg"
           aria-hidden="true"
           tabIndex={-1}
         >
           <source src="/videos/ardya-drone.mp4" type="video/mp4" />
         </video>
-        <div className="home-hero__overlay" />
+        <div className="home-hero__overlay pointer-events-none" />
 
         <div className="home-hero__content relative z-20 mx-auto text-center">
           <div className="home-hero__weather flex items-center justify-center mb-5 sm:mb-7">
@@ -213,7 +215,7 @@ export const Home: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
             <div>
               <span className="text-xs uppercase tracking-widest font-bold text-[#C39A58]">
-                Boutique Accommodation
+                Coffee Estate Accommodation
               </span>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#234B36] mt-1">
                 Our 4 Guest Rooms

@@ -136,7 +136,7 @@ export const DriveTimeCalculator: React.FC = () => {
       city: "Bangalore",
       distance: "~245 km",
       time: "~4.5 hrs",
-      route: "via NH75 (Nelamangala - Hassan - Mudigere route)",
+      route: "via NH75 (Nelamangala - Hassan - Mudigere)",
       recommendation: "Smooth 4-lane highway up to Hassan, scenic ghat road thereafter.",
     },
     {
@@ -144,7 +144,7 @@ export const DriveTimeCalculator: React.FC = () => {
       distance: "~120 km",
       time: "~3 hrs",
       route: "via Charmadi Ghat scenic highway",
-      recommendation: "Breathtaking mountain views, waterfalls, and tea estate hairpin bends.",
+      recommendation: "Breathtaking mountain views, waterfalls & tea estate bends.",
     },
     {
       city: "Mysore",
@@ -163,50 +163,60 @@ export const DriveTimeCalculator: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white rounded-3xl border border-[#E5E4DC] p-6 sm:p-10 shadow-sm space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[#E5E4DC] pb-4">
+    <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#E5E4DC] p-4 sm:p-7 shadow-sm space-y-4">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-[#E5E4DC]/80 pb-3">
         <div>
-          <span className="text-xs uppercase tracking-widest font-bold text-[#C39A58]">
-            Road Trip Navigator
-          </span>
-          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#234B36] mt-1">
+          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#FAF8F2] border border-[#E5E4DC] mb-1">
+            <Car className="w-3 h-3 text-[#C39A58]" />
+            <span className="text-[10px] uppercase tracking-wider font-bold text-[#C39A58]">
+              Road Trip Navigator
+            </span>
+          </div>
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#234B36]">
             Driving Distance &amp; Travel Times
           </h3>
         </div>
-        <p className="text-xs text-[#74796F]">
-          Well-connected paved roads suitable for all cars and bikes
+        <p className="text-[11px] text-[#74796F]">
+          Well-connected paved roads suitable for all cars &amp; bikes
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Compact Responsive Route Cards: 2x2 grid on mobile & tablet, 4 cols on large screens */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
         {routes.map((r, i) => (
           <div
             key={i}
-            className="p-5 rounded-2xl bg-[#FAF8F2] border border-[#E5E4DC] hover:border-[#234B36] transition-all flex flex-col justify-between"
+            className="p-3 sm:p-4 rounded-xl bg-[#FAF8F2] border border-[#E5E4DC] hover:border-[#234B36]/50 hover:shadow-xs transition-all flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-serif font-bold text-lg text-[#26332A]">{r.city}</span>
-                <span className="p-1.5 rounded-lg bg-white border border-[#E5E4DC] text-[#234B36]">
-                  <Car className="w-4 h-4" />
+              <div className="flex items-center justify-between gap-1 mb-1">
+                <span className="font-serif font-bold text-sm sm:text-base text-[#26332A] truncate">
+                  {r.city}
+                </span>
+                <span className="shrink-0 p-1 rounded-md bg-white border border-[#E5E4DC] text-[#234B36]">
+                  <Car className="w-3 h-3" />
                 </span>
               </div>
-              <p className="font-serif text-2xl font-bold text-[#234B36]">{r.time}</p>
-              <p className="text-[11px] font-semibold text-[#C39A58] mt-0.5">{r.distance}</p>
-              <p className="text-[11px] text-[#74796F] mt-2 leading-relaxed">{r.route}</p>
+              <div className="flex items-baseline gap-1.5">
+                <p className="font-serif text-lg sm:text-xl font-bold text-[#234B36]">{r.time}</p>
+                <span className="text-[10px] font-semibold text-[#C39A58]">{r.distance}</span>
+              </div>
+              <p className="text-[10px] text-[#74796F] mt-1 leading-snug line-clamp-2">{r.route}</p>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-[#E5E4DC]/80 text-[10px] text-[#74796F] italic">
+            <div className="mt-2.5 pt-2 border-t border-[#E5E4DC]/80 text-[9.5px] text-[#74796F]/90 italic leading-tight line-clamp-2">
               {r.recommendation}
             </div>
           </div>
         ))}
       </div>
 
-      <div className="p-4 rounded-2xl bg-[#FAF8F2] border border-[#E5E4DC] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-        <div className="flex items-center space-x-2 text-[#26332A]">
-          <MapPin className="w-4 h-4 text-[#C39A58] shrink-0" />
-          <span>Destination coordinates: <strong>Balehalli, Karnataka (577111)</strong></span>
+      {/* GPS Coordinates Bar */}
+      <div className="px-3.5 py-2.5 rounded-xl bg-[#FAF8F2] border border-[#E5E4DC] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px]">
+        <div className="flex items-center gap-1.5 text-[#26332A]">
+          <MapPin className="w-3.5 h-3.5 text-[#C39A58] shrink-0" />
+          <span>Coordinates: <strong>Balehalli, Karnataka (577111)</strong></span>
         </div>
         <a
           href={businessConfig.googleMapsUrl}
@@ -214,7 +224,7 @@ export const DriveTimeCalculator: React.FC = () => {
           rel="noopener noreferrer"
           className="text-[#234B36] font-bold underline hover:text-[#C39A58] self-start sm:self-auto"
         >
-          Open Turn-by-Turn GPS Directions →
+          Open GPS Directions →
         </a>
       </div>
     </div>

@@ -32,6 +32,8 @@ import {
   ChevronDown,
   ChevronUp,
   RefreshCw,
+  Plus,
+  Minus,
 } from "lucide-react";
 import { submitBookingEnquiry, BookingEnquiryPayload } from "../../services/enquiryService";
 import { AvailabilityCalendar } from "./AvailabilityCalendar";
@@ -176,6 +178,31 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     defaultRooms.find((r) => r.id === selectedRoomId) || availableRoomsForCategory[0] || defaultRooms[0];
 
   const totalGuests = adults + children;
+
+  // Helper to format date nicely (e.g. "Sat, 21 Nov 2026")
+  const formatDateDisplay = (dateStr: string) => {
+    if (!dateStr) return "Select Date";
+    const parts = dateStr.split("-");
+    if (parts.length === 3) {
+      const year = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10) - 1;
+      const day = parseInt(parts[2], 10);
+      const d = new Date(year, month, day);
+      return d.toLocaleDateString("en-IN", {
+        weekday: "short",
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    }
+    const d = new Date(dateStr);
+    return isNaN(d.getTime()) ? dateStr : d.toLocaleDateString("en-IN", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  };
 
   // AVAILABILITY CALCULATION AGAINST GOOGLE SHEETS "CONFIRMED" STATUS
   const availabilityResult = isRoomAvailable(selectedRoom.name, checkIn, checkOut, bookedSlots);
@@ -477,7 +504,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
           <div className="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200/60 text-xs space-y-1 text-emerald-950">
             <p className="font-bold flex items-center space-x-1.5">
               <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Enquiry safely recorded in Google Sheets &amp; Host Management Dashboard.</span>
+              <span>Your booking enquiry has been received directly by the host.</span>
             </p>
             {confirmedEnquiry.email ? (
               <p className="text-[#555E57] pl-5">
@@ -549,44 +576,70 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             </div>
           )}
 
-          {/* STEP 1: DATES & GUEST COUNTS WITH LIVE AVAILABILITY STATUS */}
-          <div>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-2">
+          {/* STEP 1: SINGLE UNIFIED STAY DATES FIELD */}
+          <div className="space-y-2.5">
+            <div className="flex items-center justify-between">
               <label className="text-[11px] font-bold uppercase tracking-wider text-[#C39A58] flex items-center space-x-1.5">
                 <Calendar className="w-3.5 h-3.5" />
-                <span>Step 1: Stay Dates &amp; Number of Guests</span>
+                <span>Step 1: Stay Dates (Check-in &amp; Check-out)</span>
               </label>
 
-              {/* LIVE GOOGLE SHEETS AVAILABILITY PILL */}
-              <div className="flex items-center space-x-2">
-                {isRoomFull ? (
-                  <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full bg-rose-100 border border-rose-300 text-rose-800 text-[10px] font-extrabold uppercase tracking-wide animate-pulse">
-                    <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
-                    <span>Selected Dates Full in Google Sheets</span>
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 text-[10px] font-bold uppercase tracking-wide">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Available on Selected Dates</span>
-                  </span>
-                )}
-
-                <button
-                  type="button"
-                  onClick={() => setShowBookedCalendar(!showBookedCalendar)}
-                  className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-xl bg-white border border-[#E5E4DC] hover:border-[#234B36] text-[10px] font-bold text-[#234B36] transition-all shadow-2xs"
-                  title="Check interactive calendar with dimmed dates"
-                >
-                  <Calendar className="w-3 h-3 text-[#C39A58]" />
-                  <span>{showBookedCalendar ? "Hide Calendar Grid" : "Open Calendar Grid (Dimmed Dates)"}</span>
-                  {showBookedCalendar ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-                </button>
-              </div>
+              {/* LIVE AVAILABILITY STATUS PILL */}
+              {isRoomFull ? (
+                <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-rose-100 border border-rose-300 text-rose-800 text-[10px] font-extrabold uppercase tracking-wide animate-pulse">
+                  <AlertTriangle className="w-3 h-3 text-rose-600" />
+                  <span>Selected Dates are Fully Booked</span>
+                </span>
+              ) : (
+                <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 text-[10px] font-bold uppercase tracking-wide">
+                  <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                  <span>Available to Reserve</span>
+                </span>
+              )}
             </div>
 
-            {/* INTERACTIVE MONTHLY CALENDAR GRID WITH DIMMED BOOKED DAYS */}
+            {/* THE SINGLE DATES INPUT FIELD */}
+            <button
+              type="button"
+              onClick={() => setShowBookedCalendar(!showBookedCalendar)}
+              className={`w-full text-left p-3.5 sm:p-4 rounded-2xl border transition-all flex items-center justify-between gap-3 shadow-xs ${
+                isRoomFull
+                  ? "bg-rose-50/60 border-rose-300 ring-2 ring-rose-200"
+                  : showBookedCalendar
+                  ? "bg-white border-[#234B36] ring-2 ring-[#234B36]/20 shadow-md"
+                  : "bg-[#FAF8F2] border-[#E5E4DC] hover:border-[#234B36] hover:bg-white"
+              }`}
+              title="Tap to select check-in and check-out dates on the visual calendar"
+            >
+              <div className="flex items-center space-x-3 truncate">
+                <div className="w-10 h-10 rounded-xl bg-[#234B36]/10 text-[#234B36] flex items-center justify-center shrink-0">
+                  <Calendar className="w-5 h-5" />
+                </div>
+                <div className="truncate">
+                  <div className="flex items-center space-x-2 text-[10px] uppercase font-bold text-[#74796F]">
+                    <span>Check-in (12 PM)</span>
+                    <span>➔</span>
+                    <span>Check-out (11 AM)</span>
+                  </div>
+                  <p className="font-serif font-bold text-sm sm:text-base text-[#234B36] truncate mt-0.5">
+                    {formatDateDisplay(checkIn)} &nbsp;—&nbsp; {formatDateDisplay(checkOut)}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-2 shrink-0">
+                <span className="px-3 py-1.5 rounded-full bg-[#234B36] text-white text-[11px] font-bold uppercase tracking-wider shadow-2xs">
+                  {calcResult.nights} Night{calcResult.nights > 1 ? "s" : ""}
+                </span>
+                <div className="p-1 rounded-lg text-[#74796F] hover:text-[#234B36]">
+                  {showBookedCalendar ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                </div>
+              </div>
+            </button>
+
+            {/* INTERACTIVE MONTHLY CALENDAR DROPDOWN */}
             {showBookedCalendar && (
-              <div className="mb-3 space-y-2">
+              <div className="pt-1">
                 <AvailabilityCalendar
                   roomName={selectedRoom.name}
                   checkIn={checkIn}
@@ -596,66 +649,80 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     setCheckOut(newOut);
                     setErrorMessage(null);
                   }}
+                  onClose={() => setShowBookedCalendar(false)}
                   bookedSlots={bookedSlots}
                 />
               </div>
             )}
+          </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-              <div className={`p-2.5 rounded-xl border ${isRoomFull ? "bg-rose-50/50 border-rose-300" : "bg-[#FAF8F2] border-[#E5E4DC]"}`}>
-                <label className="block text-[9px] uppercase font-bold text-[#74796F] mb-1">
-                  Check-in Date
-                </label>
-                <input
-                  type="date"
-                  required
-                  min={today}
-                  value={checkIn}
-                  onChange={(e) => setCheckIn(e.target.value)}
-                  className="w-full bg-transparent text-xs font-semibold text-[#26332A] focus:outline-none"
-                />
+          {/* STEP 2: GUEST COUNT WITH TACTILE STEPPER BUTTONS */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-[11px] font-bold uppercase tracking-wider text-[#C39A58] flex items-center space-x-1.5">
+                <Users className="w-3.5 h-3.5" />
+                <span>Step 2: Number of Guests</span>
+              </label>
+              <span className="text-[10px] text-[#74796F]">Total: {totalGuests} Guest{totalGuests > 1 ? "s" : ""}</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Adults Counter */}
+              <div className="p-3 bg-[#FAF8F2] rounded-2xl border border-[#E5E4DC] flex items-center justify-between">
+                <div>
+                  <h5 className="font-serif font-bold text-sm text-[#26332A]">Adults</h5>
+                  <p className="text-[10px] text-[#74796F]">Ages 12 years and above</p>
+                </div>
+                <div className="flex items-center space-x-3 bg-white px-2.5 py-1.5 rounded-xl border border-[#E5E4DC]">
+                  <button
+                    type="button"
+                    disabled={adults <= 1}
+                    onClick={() => setAdults((prev) => Math.max(1, prev - 1))}
+                    className="w-7 h-7 rounded-lg bg-[#FAF8F2] hover:bg-[#E5E4DC] text-[#26332A] flex items-center justify-center font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <Minus className="w-3.5 h-3.5" />
+                  </button>
+                  <span className="font-serif font-bold text-base text-[#234B36] min-w-[20px] text-center">
+                    {adults}
+                  </span>
+                  <button
+                    type="button"
+                    disabled={adults >= 15}
+                    onClick={() => setAdults((prev) => Math.min(15, prev + 1))}
+                    className="w-7 h-7 rounded-lg bg-[#FAF8F2] hover:bg-[#E5E4DC] text-[#26332A] flex items-center justify-center font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
 
-              <div className={`p-2.5 rounded-xl border ${isRoomFull ? "bg-rose-50/50 border-rose-300" : "bg-[#FAF8F2] border-[#E5E4DC]"}`}>
-                <label className="block text-[9px] uppercase font-bold text-[#74796F] mb-1">
-                  Check-out Date
-                </label>
-                <input
-                  type="date"
-                  required
-                  min={checkIn || today}
-                  value={checkOut}
-                  onChange={(e) => setCheckOut(e.target.value)}
-                  className="w-full bg-transparent text-xs font-semibold text-[#26332A] focus:outline-none"
-                />
-              </div>
-
-              <div className="bg-[#FAF8F2] p-2.5 rounded-xl border border-[#E5E4DC]">
-                <label className="block text-[9px] uppercase font-bold text-[#74796F] mb-1">
-                  Adults (12+ yrs)
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  max="15"
-                  value={adults}
-                  onChange={(e) => setAdults(Math.max(1, parseInt(e.target.value) || 1))}
-                  className="w-full bg-transparent text-xs font-semibold text-[#26332A] focus:outline-none"
-                />
-              </div>
-
-              <div className="bg-[#FAF8F2] p-2.5 rounded-xl border border-[#E5E4DC]">
-                <label className="block text-[9px] uppercase font-bold text-[#74796F] mb-1">
-                  Children (&lt;12 yrs)
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  max="10"
-                  value={children}
-                  onChange={(e) => setChildren(Math.max(0, parseInt(e.target.value) || 0))}
-                  className="w-full bg-transparent text-xs font-semibold text-[#26332A] focus:outline-none"
-                />
+              {/* Children Counter */}
+              <div className="p-3 bg-[#FAF8F2] rounded-2xl border border-[#E5E4DC] flex items-center justify-between">
+                <div>
+                  <h5 className="font-serif font-bold text-sm text-[#26332A]">Children</h5>
+                  <p className="text-[10px] text-[#536B45] font-semibold">Under 6 free • 6–11 at 50%</p>
+                </div>
+                <div className="flex items-center space-x-3 bg-white px-2.5 py-1.5 rounded-xl border border-[#E5E4DC]">
+                  <button
+                    type="button"
+                    disabled={children <= 0}
+                    onClick={() => setChildren((prev) => Math.max(0, prev - 1))}
+                    className="w-7 h-7 rounded-lg bg-[#FAF8F2] hover:bg-[#E5E4DC] text-[#26332A] flex items-center justify-center font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <Minus className="w-3.5 h-3.5" />
+                  </button>
+                  <span className="font-serif font-bold text-base text-[#234B36] min-w-[20px] text-center">
+                    {children}
+                  </span>
+                  <button
+                    type="button"
+                    disabled={children >= 10}
+                    onClick={() => setChildren((prev) => Math.min(10, prev + 1))}
+                    className="w-7 h-7 rounded-lg bg-[#FAF8F2] hover:bg-[#E5E4DC] text-[#26332A] flex items-center justify-center font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -670,7 +737,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 <div className="flex-1">
                   <div className="flex items-center space-x-2">
                     <span className="text-[10px] uppercase font-bold tracking-wider text-amber-800 bg-amber-200/60 px-2 py-0.5 rounded-full">
-                      Already Booked in Google Sheets
+                      Already Reserved for These Dates
                     </span>
                   </div>
                   <h4 className="font-serif font-bold text-base text-amber-950 mt-1">
@@ -745,10 +812,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             </div>
           )}
 
-          {/* STEP 2: ROOM CATEGORY SELECTION */}
+          {/* STEP 3: ROOM CATEGORY SELECTION */}
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-wider text-[#C39A58] mb-2">
-              Step 2: Room Category (Regular vs Premium)
+              Step 3: Room Category (Regular vs Premium)
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {/* Regular Option */}
@@ -805,11 +872,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             </div>
           </div>
 
-          {/* STEP 3: INDIVIDUAL ROOM SELECTION */}
+          {/* STEP 4: INDIVIDUAL ROOM SELECTION */}
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-wider text-[#C39A58] mb-2 flex items-center space-x-1.5">
               <BedDouble className="w-3.5 h-3.5" />
-              <span>Step 3: Select Room in {selectedCategory} Category</span>
+              <span>Step 4: Select Room in {selectedCategory} Category</span>
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {availableRoomsForCategory.map((room) => {
@@ -859,11 +926,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             </div>
           </div>
 
-          {/* STEP 4: MEAL PACKAGE SELECTION */}
+          {/* STEP 5: MEAL PACKAGE SELECTION */}
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-wider text-[#C39A58] mb-2 flex items-center space-x-1.5">
               <UtensilsCrossed className="w-3.5 h-3.5" />
-              <span>Step 4: Select Meal Package</span>
+              <span>Step 5: Select Meal Package</span>
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {/* Stay Only */}
@@ -925,12 +992,12 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             </div>
           </div>
 
-          {/* STEP 5: GUEST CONTACT INFORMATION */}
+          {/* STEP 6: GUEST CONTACT INFORMATION */}
           <div className="p-4 sm:p-5 rounded-2xl bg-[#FAF8F2] border border-[#E5E4DC] space-y-3">
             <div>
               <label className="text-[11px] font-bold uppercase tracking-wider text-[#C39A58] flex items-center space-x-1.5">
                 <User className="w-3.5 h-3.5" />
-                <span>Step 5: Guest Contact Information</span>
+                <span>Step 6: Guest Contact Information</span>
               </label>
               <p className="text-[11px] text-[#74796F] mt-0.5">
                 Provide your details so the host can confirm availability and dispatch your booking voucher.
@@ -1005,10 +1072,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             </div>
           </div>
 
-          {/* STEP 6: DYNAMIC BOOKING SUMMARY & PRICE CALCULATION CARD */}
+          {/* STEP 7: DYNAMIC BOOKING SUMMARY & PRICE CALCULATION CARD */}
           <div className="p-4 rounded-2xl bg-[#FAF8F2] border border-[#E5E4DC] space-y-2.5">
             <span className="text-[10px] uppercase font-extrabold tracking-widest text-[#C39A58] block">
-              Step 6: Real-time Price Calculation Summary
+              Step 7: Real-time Price Calculation Summary
             </span>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">

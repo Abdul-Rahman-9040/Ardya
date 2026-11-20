@@ -5,6 +5,8 @@ import {
   Calendar as CalendarIcon,
   CheckCircle2,
   AlertTriangle,
+  Check,
+  X,
 } from "lucide-react";
 import {
   BookedDateSlot,
@@ -18,6 +20,7 @@ interface AvailabilityCalendarProps {
   checkOut: string; // YYYY-MM-DD
   onSelectDates: (checkIn: string, checkOut: string) => void;
   bookedSlots: BookedDateSlot[];
+  onClose?: () => void;
 }
 
 export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
@@ -26,6 +29,7 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
   checkOut,
   onSelectDates,
   bookedSlots,
+  onClose,
 }) => {
   // Current viewing month state
   const initialDate = checkIn ? new Date(checkIn) : new Date();
@@ -33,8 +37,10 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
     isNaN(initialDate.getTime()) ? new Date() : initialDate
   );
 
-  // Temporary selection state during clicking
-  const [pendingCheckIn, setPendingCheckIn] = useState<string | null>(checkIn || null);
+  // Selection step: 'pick-checkin' or 'pick-checkout'
+  const [selectionStep, setSelectionStep] = useState<"pick-checkin" | "pick-checkout">("pick-checkin");
+  const [pendingStart, setPendingStart] = useState<string | null>(null);
+  const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const [calendarError, setCalendarError] = useState<string | null>(null);
 
   const todayStr = normalizeDateString(new Date());
@@ -91,36 +97,38 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
     return false;
   };
 
-  // Handle date cell click
+  // Handle date cell click (2-click range selection)
   const handleDateClick = (dateStr: string) => {
     setCalendarError(null);
 
     // Can't pick past or booked check-in date
     if (dateStr < todayStr) return;
     if (isDateBooked(dateStr)) {
-      setCalendarError(`${dateStr} is already booked in Google Sheets. Please pick an open date.`);
+      setCalendarError(`${dateStr} is already reserved. Please select an available open date.`);
       return;
     }
 
-    // If starting fresh or both check-in & check-out were already picked
-    if (!pendingCheckIn || (pendingCheckIn && checkOut && pendingCheckIn === checkIn)) {
-      setPendingCheckIn(dateStr);
-      // Auto-set 1-night checkout if available
+    // Step 1: Picking Check-in
+    if (selectionStep === "pick-checkin" || !pendingStart) {
+      setPendingStart(dateStr);
+      setSelectionStep("pick-checkout");
+
+      // Auto-set 1-night checkout as default preview
       const nextDay = new Date(dateStr);
       nextDay.setDate(nextDay.getDate() + 1);
       const nextDayStr = normalizeDateString(nextDay);
-
       if (!isDateBooked(dateStr)) {
         onSelectDates(dateStr, nextDayStr);
       }
       return;
     }
 
-    // If selecting check-out (second click)
-    if (pendingCheckIn) {
-      if (dateStr <= pendingCheckIn) {
-        // Clicked on or before check-in -> treat as new check-in
-        setPendingCheckIn(dateStr);
+    // Step 2: Picking Check-out
+    if (selectionStep === "pick-checkout" && pendingStart) {
+      if (dateStr <= pendingStart) {
+        // User clicked before start -> reset start to this clicked date
+        setPendingStart(dateStr);
+        setSelectionStep("pick-checkout");
         const nextDay = new Date(dateStr);
         nextDay.setDate(nextDay.getDate() + 1);
         onSelectDates(dateStr, normalizeDateString(nextDay));
@@ -128,18 +136,20 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
       }
 
       // Check if range spans any booked days
-      if (rangeContainsBooked(pendingCheckIn, dateStr)) {
-        setCalendarError("Selected date range includes days already booked in Google Sheets. Check-in reset to clicked date.");
-        setPendingCheckIn(dateStr);
+      if (rangeContainsBooked(pendingStart, dateStr)) {
+        setCalendarError("Selected date range includes days already reserved. Start date reset to clicked date.");
+        setPendingStart(dateStr);
+        setSelectionStep("pick-checkout");
         const nextDay = new Date(dateStr);
         nextDay.setDate(nextDay.getDate() + 1);
         onSelectDates(dateStr, normalizeDateString(nextDay));
         return;
       }
 
-      // Valid range! Apply
-      onSelectDates(pendingCheckIn, dateStr);
-      setPendingCheckIn(null);
+      // Valid range complete!
+      onSelectDates(pendingStart, dateStr);
+      setPendingStart(null);
+      setSelectionStep("pick-checkin");
     }
   };
 
@@ -152,21 +162,30 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
     daysArray.push(d);
   }
 
+  // Calculate nights
+  const checkInDate = new Date(checkIn);
+  const checkOutDate = new Date(checkOut);
+  const diffDays = Math.max(1, Math.round((checkOutDate.getTime() - checkInDate.getTime()) / 86400000));
+
   return (
-    <div className="bg-white rounded-2xl border border-[#E5E4DC] p-4 sm:p-5 shadow-xs space-y-3.5">
-      {/* Month Header */}
+    <div className="bg-white rounded-2xl border-2 border-[#234B36]/30 p-4 sm:p-5 shadow-lg space-y-3.5">
+      {/* Month & Step Navigation Bar */}
       <div className="flex items-center justify-between pb-3 border-b border-[#E5E4DC]">
-        <div className="flex items-center space-x-2">
-          <CalendarIcon className="w-4 h-4 text-[#C39A58]" />
-          <h4 className="font-serif font-bold text-sm sm:text-base text-[#234B36]">
-            {monthNames[month]} {year}
-          </h4>
-          <span className="text-[10px] text-[#74796F] hidden sm:inline">
-            • Tap date to set Check-in &amp; Check-out
+        <div>
+          <div className="flex items-center space-x-2">
+            <CalendarIcon className="w-4 h-4 text-[#C39A58]" />
+            <h4 className="font-serif font-bold text-sm sm:text-base text-[#234B36]">
+              {monthNames[month]} {year}
+            </h4>
+          </div>
+          <span className="text-[10px] text-[#C39A58] font-bold uppercase tracking-wider block mt-0.5">
+            {selectionStep === "pick-checkout"
+              ? "👉 Step 2: Now tap your Check-out date"
+              : "👉 Tap to select Check-in date, then Check-out"}
           </span>
         </div>
 
-        <div className="flex items-center space-x-1">
+        <div className="flex items-center space-x-1.5">
           <button
             type="button"
             onClick={prevMonth}
@@ -183,6 +202,16 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
           >
             <ChevronRight className="w-4 h-4" />
           </button>
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              className="p-1.5 rounded-lg bg-[#FAF8F2] hover:bg-[#E5E4DC] text-[#74796F] hover:text-[#26332A] transition-colors ml-1"
+              title="Close calendar"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
 
@@ -220,9 +249,13 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
 
           const isPast = dateStr < todayStr;
           const isBooked = isDateBooked(dateStr);
-          const isCheckIn = dateStr === checkIn;
-          const isCheckOut = dateStr === checkOut;
-          const isInRange = checkIn && checkOut && dateStr > checkIn && dateStr < checkOut;
+
+          const isCheckIn = pendingStart ? dateStr === pendingStart : dateStr === checkIn;
+          const isCheckOut = !pendingStart && dateStr === checkOut;
+          const isInRange =
+            !pendingStart && checkIn && checkOut && dateStr > checkIn && dateStr < checkOut;
+          const isHoverRange =
+            pendingStart && hoveredDate && dateStr > pendingStart && dateStr <= hoveredDate;
 
           // Styling logic
           let cellStyle = "bg-[#FAF8F2]/60 text-[#26332A] hover:bg-emerald-50 hover:text-emerald-900 cursor-pointer";
@@ -231,7 +264,7 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
           if (isPast) {
             cellStyle = "bg-transparent text-gray-300 cursor-not-allowed line-through";
           } else if (isBooked) {
-            // DIMMED / CROSSED OUT IN RED (FULL IN GOOGLE SHEETS)
+            // DIMMED / CROSSED OUT IN RED (FULL)
             cellStyle =
               "bg-rose-50 text-rose-400 line-through cursor-not-allowed border border-rose-200/60 font-medium";
             labelText = "Full";
@@ -241,7 +274,7 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
           } else if (isCheckOut) {
             cellStyle = "bg-[#234B36] text-white font-bold shadow-sm ring-2 ring-[#C39A58]";
             labelText = "Out";
-          } else if (isInRange) {
+          } else if (isInRange || isHoverRange) {
             cellStyle = "bg-[#234B36]/15 text-[#234B36] font-semibold";
           }
 
@@ -251,10 +284,11 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
               type="button"
               disabled={isPast || isBooked}
               onClick={() => handleDateClick(dateStr)}
+              onMouseEnter={() => setHoveredDate(dateStr)}
               className={`h-9 sm:h-10 rounded-xl flex flex-col items-center justify-center text-xs transition-all relative ${cellStyle}`}
               title={
                 isBooked
-                  ? `${dateStr}: Confirmed Booked in Google Sheets`
+                  ? `${dateStr}: Already Reserved / Booked`
                   : isPast
                   ? "Past date"
                   : `${dateStr}: Available`
@@ -271,8 +305,33 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
         })}
       </div>
 
+      {/* Selected Stay Summary & Apply Bar */}
+      <div className="pt-3 border-t border-[#E5E4DC] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+        <div className="text-xs">
+          <span className="text-[10px] uppercase font-bold text-[#74796F] block">
+            Selected Stay Duration
+          </span>
+          <span className="font-bold text-[#234B36] text-sm">
+            {checkIn} &nbsp;➔&nbsp; {checkOut} &nbsp;({diffDays} Night{diffDays > 1 ? "s" : ""})
+          </span>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 rounded-xl bg-[#234B36] hover:bg-[#1a3828] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs flex items-center space-x-1.5"
+            >
+              <Check className="w-3.5 h-3.5 text-[#C39A58]" />
+              <span>Apply Dates</span>
+            </button>
+          )}
+        </div>
+      </div>
+
       {/* Visual Legend */}
-      <div className="pt-2 border-t border-[#E5E4DC] flex flex-wrap items-center justify-between text-[11px] text-[#74796F] gap-2">
+      <div className="pt-2 border-t border-[#E5E4DC]/60 flex flex-wrap items-center justify-between text-[11px] text-[#74796F] gap-2">
         <div className="flex items-center space-x-1.5">
           <span className="w-3.5 h-3.5 rounded bg-white border border-[#E5E4DC]" />
           <span>Available</span>
@@ -282,12 +341,12 @@ export const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
           <span className="w-3.5 h-3.5 rounded bg-rose-50 border border-rose-300 text-rose-400 flex items-center justify-center font-bold text-[8px] line-through">
             ×
           </span>
-          <span className="text-rose-700 font-medium">Booked / Dimmed (Sheets)</span>
+          <span className="text-rose-700 font-medium">Already Booked (Dimmed)</span>
         </div>
 
         <div className="flex items-center space-x-1.5">
           <span className="w-3.5 h-3.5 rounded bg-[#234B36]" />
-          <span className="text-[#234B36] font-medium">Selected Stay</span>
+          <span className="text-[#234B36] font-medium">Your Selected Stay</span>
         </div>
       </div>
     </div>

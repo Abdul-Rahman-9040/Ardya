@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
               {businessConfig.name}
             </h3>
             <p className="text-xs text-[#E5E4DC]/80 max-w-sm">
-              Boutique coffee homestay with 4 private rooms in Balehalli, Karnataka.
+              Coffee estate homestay with 4 private rooms in Balehalli, Karnataka.
             </p>
           </div>
 
